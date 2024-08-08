@@ -35,9 +35,9 @@ void generate_neutrons(TString outputFile = "", int nEvents = 10000, double thet
   double beamE = -99;	// GeV
   
   double weight = 1;
-  ofstream outfile;
-  outfile.open(outputFile);
-  if(!outfile.is_open())
+  ofstream OutFile;
+  OutFile.open(outputFile);
+  if(!OutFile.is_open())
     cout<<"Output file cannot be created"<<endl;
 
   TString formatstring, outstring;
@@ -48,7 +48,7 @@ void generate_neutrons(TString outputFile = "", int nEvents = 10000, double thet
       // LUND header for the event:
       formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
       outstring = Form(formatstring, nParticles, 1, 1, targP, beamP, beamType, beamE, interactN, i, weight);
-      outfile << outstring; 
+      OutFile << outstring;
       
       //      double theta_min = 35;
       //      double theta_max = 140;
@@ -64,7 +64,7 @@ void generate_neutrons(TString outputFile = "", int nEvents = 10000, double thet
       double py = mom * sin(theta)*sin(phi); 
       double pz = mom * cos(theta);
 
-      outfile << addParticle(1,11,TVector3(px,py,pz),mass_e,vtx);
+      OutFile << addParticle(1,11,TVector3(px,py,pz),mass_e,vtx);
 
       mom = ran.Uniform(.2,1);
       phi = ran.Uniform(-TMath::Pi(),TMath::Pi());
@@ -76,10 +76,10 @@ void generate_neutrons(TString outputFile = "", int nEvents = 10000, double thet
       px = mom * sin(theta)*cos(phi); 
       py = mom * sin(theta)*sin(phi); 
       pz = mom * cos(theta);
-      outfile << addParticle(2,2112,TVector3(px,py,pz),mass_n,vtx);
+      OutFile << addParticle(2,2112,TVector3(px,py,pz),mass_n,vtx);
       
     }
   
-  outfile.close();
+  OutFile.close();
 
 }

@@ -7,4 +7,6 @@ add_executable(Uniform_sample_generator main.cpp
         Uniform_sample_generator.C
         addParticle.C
         Generate_uniform_event.C
-        Run.cpp)
+        Run.cpp
+        BoolToString.C
+        DisplyText.C)
