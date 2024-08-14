@@ -10,7 +10,7 @@
 
 void Uniform_sample_generator(
     double Ebeam = 5.98636, bool EnforceMomCon = false,
-    TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/lundfiles/OutPut/",
+    TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/lundfiles/",
     // TString OutPutFolder = "./OutPut/",
     TString OutputFileNamePrefix = "Uniform_sample",
     int nFiles = 10, int nEvents = 10000,
