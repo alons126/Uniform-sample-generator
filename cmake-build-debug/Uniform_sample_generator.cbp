@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Uniform_sample_generator"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\mnt\;CMake Files\..\..\..\mnt\c\;CMake Files\..\..\..\mnt\c\root_v6.26.10\;CMake Files\..\..\..\mnt\c\root_v6.26.10\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/alon/Uniform_sample_generator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/alon/Uniform_sample_generator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/alon/Uniform_sample_generator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Uniform_sample_generator">
+				<Option output="/home/alon/Uniform_sample_generator/cmake-build-debug/Uniform_sample_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alon/Uniform_sample_generator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/root_v6.26.10/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 Uniform_sample_generator"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Uniform_sample_generator/fast">
+				<Option output="/home/alon/Uniform_sample_generator/cmake-build-debug/Uniform_sample_generator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alon/Uniform_sample_generator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/root_v6.26.10/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 Uniform_sample_generator/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/alon/Uniform_sample_generator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/alon/Uniform_sample_generator/BoolToString.C">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/CodeRun.cpp">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/ConfigBeamE.cpp">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/DisplyText.C">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/Generate_uniform_event.C">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/Uniform_sample_generator.C">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/addParticle.C">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/main.cpp">
+			<Option target="Uniform_sample_generator"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/../../../mnt/c/root_v6.26.10/cmake/ROOTConfig-targets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\mnt\c\root_v6.26.10\cmake\"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/../../../mnt/c/root_v6.26.10/cmake/ROOTConfig-targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\mnt\c\root_v6.26.10\cmake\"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/../../../mnt/c/root_v6.26.10/cmake/ROOTConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\mnt\c\root_v6.26.10\cmake\"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/../../../mnt/c/root_v6.26.10/cmake/ROOTConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\mnt\c\root_v6.26.10\cmake\"/>
+		</Unit>
+		<Unit filename="/home/alon/Uniform_sample_generator/../../../mnt/c/root_v6.26.10/cmake/RootMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\mnt\c\root_v6.26.10\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
