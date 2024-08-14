@@ -61,10 +61,14 @@ void Uniform_sample_generator(
     string OutPutFolder0(OutPutFolder.Data());
     DisplyText("OutPutFolder", DisplaySpace, OutPutFolder);
 
-    TString lundPath = OutPutFolder + "lundfiles";
-    // TString lundPath = "./OutPut/lundfiles";
-    string lundPath0(lundPath.Data());
+    TString lundPath = OutPutFolder + "lundfiles", mchipoPath = OutPutFolder + "mchipo";
+    TString reconhipoPath = OutPutFolder + "reconhipo", rootfilesPath = OutPutFolder + "rootfiles";
+    string lundPath0(lundPath.Data()), mchipoPath0(mchipoPath.Data());
+    string reconhipoPath0(reconhipoPath.Data()), rootfilesPath0(rootfilesPath.Data());
     DisplyText("lundPath", DisplaySpace, lundPath);
+    DisplyText("mchipoPath", DisplaySpace, mchipoPath);
+    DisplyText("reconhipoPath", DisplaySpace, reconhipoPath);
+    DisplyText("rootfilesPath", DisplaySpace, rootfilesPath);
 
     TString MonitoringPlotsPath = OutPutFolder + "MonitoringPlotsPath/";
     string MonitoringPlotsPath0(MonitoringPlotsPath.Data());
@@ -100,6 +104,9 @@ void Uniform_sample_generator(
     system(("mkdir -p " + OutPutFolder0).c_str()); // Make new lundPath
 
     system(("mkdir -p " + lundPath0).c_str()); // Make new lundPath
+    system(("mkdir -p " + mchipoPath0).c_str()); // Make new lundPath
+    system(("mkdir -p " + reconhipoPath0).c_str()); // Make new lundPath
+    system(("mkdir -p " + rootfilesPath0).c_str()); // Make new lundPath
 
     system(("mkdir -p " + MonitoringPlotsPath0).c_str()); // Make new monitoring plots folder
 
