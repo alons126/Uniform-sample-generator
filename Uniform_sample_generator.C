@@ -10,7 +10,7 @@
 
 void Uniform_sample_generator(
     double Ebeam = 5.98636, bool EnforceMomCon = false,
-    TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/lundfiles/",
+    TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/",
     // TString OutPutFolder = "./OutPut/",
     TString OutputFileNamePrefix = "Uniform_sample",
     int nFiles = 10, int nEvents = 10000,
@@ -111,7 +111,8 @@ void Uniform_sample_generator(
         cout << "\nGenerating lund files...\n\n";
 
         for (int iFiles = 1; iFiles < nFiles + 1; iFiles++) {
-            TString OutFileName = Form("%s/%s_%d.dat", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
+            TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
+            // TString OutFileName = Form("%s/%s_%d.dat", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
             cout << "OutFileName: " << std::setw(49) << OutFileName << "\n";
 
             ofstream OutFile;
