@@ -18,7 +18,7 @@ void Generate_uniform_event(const bool &EnforceMomentumConservation, vector<TH1 
         // OutFile << outstring;
 
         /* Add particles in event below*/
-        TVector3 vtx(0, 0, -3);
+        TVector3 vtx(0, 0, -3); //TODO: ask Adi where should the vertex be!
 
         /* Electron */
         TVector3 P_e_3v;
@@ -31,7 +31,7 @@ void Generate_uniform_event(const bool &EnforceMomentumConservation, vector<TH1 
         TVector3 P_N_3v;
 
         if (EnforceMomentumConservation) {
-            /* Enforcing momentum conservation */
+            /* Enforcing momentum conservation - constrained nucleon kinematics */
             P_N_3v.SetXYZ(-P_e_3v.Px(), -P_e_3v.Py(), Ebeam - P_e_3v.Pz());
 
             if ((P_N_3v.Theta() * TMath::RadToDeg() >= theta_N_min) &&
@@ -78,7 +78,7 @@ void Generate_uniform_event(const bool &EnforceMomentumConservation, vector<TH1 
                 ++i;
             }
         } else {
-            /* Uniform Theta_N, Phi_N, and P_N */
+            /* NOT enforcing momentum conservation - uniform Theta_N, Phi_N, and P_N */
             double Theta_N = ran.Uniform(theta_N_min, theta_N_max); // Uniform Theta_N from theta_N_min to theta_N_max
             double Phi_N = ran.Uniform(-180., 180.); // Uniform Phi_N from -180 to +180
             double P_N = ran.Uniform(0, Ebeam); // Uniform P_N from 0 to P_N = beamE

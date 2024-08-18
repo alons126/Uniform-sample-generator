@@ -1,3 +1,6 @@
+#include <unistd.h>
+#include <iostream>
+
 #include "TList.h"
 #include "TObjString.h"
 
@@ -7,11 +10,14 @@
 #include "ConfigBeamE.cpp"
 
 /* root CodeRun.cpp -q -b */
+/* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
+
+//TODO: make sure again that the output file is in the LUND format!
 
 void Uniform_sample_generator(
-    double Ebeam = 5.98636, bool EnforceMomCon = false,
-    TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/",
-    // TString OutPutFolder = "./OutPut/",
+    double Ebeam = 5.98636, bool EnforceMomCon = true,
+    // TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/",
+    TString OutPutFolder = "./OutPut/",
     TString OutputFileNamePrefix = "Uniform_sample",
     int nFiles = 10, int nEvents = 10000,
     double theta_e_min = 5., double theta_e_max = 40.,
@@ -103,10 +109,10 @@ void Uniform_sample_generator(
     system(("rm -r " + OutPutFolder0).c_str()); // Delete old lundPath
     system(("mkdir -p " + OutPutFolder0).c_str()); // Make new lundPath
 
-    system(("mkdir -p " + lundPath0).c_str()); // Make new lundPath
-    system(("mkdir -p " + mchipoPath0).c_str()); // Make new lundPath
-    system(("mkdir -p " + reconhipoPath0).c_str()); // Make new lundPath
-    system(("mkdir -p " + rootfilesPath0).c_str()); // Make new lundPath
+    system(("mkdir -p " + lundPath0).c_str()); // Make new lundfiles folder
+    system(("mkdir -p " + mchipoPath0).c_str()); // Make new mchipo folder
+    system(("mkdir -p " + reconhipoPath0).c_str()); // Make new reconhipo folder
+    system(("mkdir -p " + rootfilesPath0).c_str()); // Make new rootfiles folder
 
     system(("mkdir -p " + MonitoringPlotsPath0).c_str()); // Make new monitoring plots folder
 
@@ -118,8 +124,7 @@ void Uniform_sample_generator(
         cout << "\nGenerating lund files...\n\n";
 
         for (int iFiles = 1; iFiles < nFiles + 1; iFiles++) {
-            TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
-            // TString OutFileName = Form("%s/%s_%d.dat", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
+            TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles); // TODO: figure out if LUND files are '.txt' or '.dat' files
             cout << "OutFileName: " << std::setw(49) << OutFileName << "\n";
 
             ofstream OutFile;
