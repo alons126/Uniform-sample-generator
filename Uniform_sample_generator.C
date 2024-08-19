@@ -15,7 +15,7 @@
 //TODO: make sure again that the output file is in the LUND format!
 
 void Uniform_sample_generator(
-    double Ebeam = 5.98636, bool EnforceMomCon = true,
+    double Ebeam = 5.98636, bool EnforceMomCon = false,
     // TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/",
     TString OutPutFolder = "./OutPut/",
     TString OutputFileNamePrefix = "Uniform_sample",
@@ -29,9 +29,9 @@ void Uniform_sample_generator(
     OutputFileNamePrefix = ConfigBeamE(Ebeam, OutputFileNamePrefix);
 
     if (EnforceMomCon) {
-        OutputFileNamePrefix = OutputFileNamePrefix + "_wMomCon";
+        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_wMomCon";
     } else {
-        OutputFileNamePrefix = OutputFileNamePrefix + "_woMomCon";
+        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_woMomCon";
     }
 
     bool GenerateLundFiles = true;

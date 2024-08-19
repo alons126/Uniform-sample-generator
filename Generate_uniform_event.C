@@ -39,7 +39,7 @@ void Generate_uniform_event(const bool &EnforceMomentumConservation, vector<TH1 
                 OutFile << outstring;
                 OutFile << addParticle(1, 11, P_e_3v, mass_e, vtx);
                 OutFile << addParticle(2, N_pid, P_N_3v, mass_N, vtx);
-                OutFile << "\n";
+                // OutFile << "\n";
 
                 if (N_pid == 2212) {
                     hTheta_e_ep->Fill(P_e_3v.Theta() * TMath::RadToDeg());
@@ -87,7 +87,7 @@ void Generate_uniform_event(const bool &EnforceMomentumConservation, vector<TH1 
             OutFile << outstring;
             OutFile << addParticle(1, 11, P_e_3v, mass_e, vtx);
             OutFile << addParticle(2, N_pid, P_N_3v, mass_N, vtx);
-            OutFile << "\n";
+            // OutFile << "\n";
 
             if (N_pid == 2212) {
                 hTheta_e_ep->Fill(P_e_3v.Theta() * TMath::RadToDeg());
