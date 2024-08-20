@@ -13,6 +13,9 @@
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
 
 //TODO: make sure again that the output file is in the LUND format!
+//TODO: Ask Andrew which GCARD and YAML files to use!
+//TODO: Talk to Andrew - wrong environment file?
+//TODO: Talk to Andrew - GENIE to LUND file is outdated!
 
 void Uniform_sample_generator(
     double Ebeam = 5.98636, bool EnforceMomCon = false,
