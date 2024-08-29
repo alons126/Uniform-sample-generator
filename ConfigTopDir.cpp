@@ -101,6 +101,7 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
         }
 
         cout << "OutPutFolder = " << OutPutFolder << endl;
+        cout << "FuncOut = " << FuncOut << endl;
         exit(0);
         return FuncOut;
     }
