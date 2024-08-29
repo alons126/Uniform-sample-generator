@@ -85,7 +85,7 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
         cout << "OutPut folder kept unchanged." << endl;
 
         string OutPutFolder0 = OutPutFolder.Data();
-        string OutPutFolder1 = OutPutFolder0.substr(OutPutFolder0.find_last_of('/') - 1);
+        string OutPutFolder1 = OutPutFolder0.substr(0, OutPutFolder0.find_last_of('/') - 1);
 
         if (gen_1e_events)
         {
