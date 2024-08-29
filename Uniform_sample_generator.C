@@ -8,6 +8,7 @@
 #include "DisplyText.C"
 #include "Histograms.cpp"
 #include "ConfigBeamE.cpp"
+#include "ConfigTopDir.cpp"
 
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
@@ -16,26 +17,31 @@
 //TODO: Ask Andrew which GCARD and YAML files to use!
 //TODO: Talk to Andrew - wrong environment file?
 //TODO: Talk to Andrew - GENIE to LUND file is outdated!
+//TODO: ask Adi where should the vertex be!
 
-void Uniform_sample_generator(
-    double Ebeam = 5.98636, bool EnforceMomCon = false,
-    TString OutPutFolder = "/lustre19/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/",
-    // TString OutPutFolder = "./OutPut/",
-    TString OutputFileNamePrefix = "Uniform_sample",
-    int nFiles = 10, int nEvents = 10000,
-    double theta_e_min = 5., double theta_e_max = 40.,
-    double theta_p_min = 5., double theta_p_max = 45.,
-    double theta_n_min = 5., double theta_n_max = 35.) {
+void Uniform_sample_generator(double Ebeam = 5.98636, bool EnforceMomCon = false,
+                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/598636MeV/",
+                              // TString OutPutFolder = "/Users/alon/Projects/Uniform-sample-generator/OutPut2/",
+                              // TString OutPutFolder = "./OutPut/",
+                              TString OutputFileNamePrefix = "Uniform_sample",
+                              int nFiles = 10, int nEvents = 10000,
+                              double theta_e_min = 5., double theta_e_max = 40.,
+                              double theta_p_min = 5., double theta_p_max = 45.,
+                              double theta_n_min = 5., double theta_n_max = 35.)
+{
     // -------------------------------------------------------------------------------------------------
     cout << "\n";
 
     OutputFileNamePrefix = ConfigBeamE(Ebeam, OutputFileNamePrefix);
 
-    if (EnforceMomCon) {
+    /*if (EnforceMomCon)
+    {
         OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_wMomCon";
-    } else {
-        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_woMomCon";
     }
+    else
+    {
+        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_woMomCon";
+    }*/
 
     bool GenerateLundFiles = true;
     bool EnforceMomentumConservation = EnforceMomCon;
@@ -44,6 +50,8 @@ void Uniform_sample_generator(
     cout << "\n\n===========================================================================\n";
     cout << setw(50) << "Uniform sample generator\n";
     cout << "===========================================================================\n\n";
+
+    OutPutFolder = ConfigTopDir(OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
 
     DisplyText("OutputFileNamePrefix", DisplaySpace, OutputFileNamePrefix);
     DisplyText("nFiles", DisplaySpace, nFiles);
@@ -83,10 +91,10 @@ void Uniform_sample_generator(
     string MonitoringPlotsPath0(MonitoringPlotsPath.Data());
     DisplyText("MonitoringPlotsPath", DisplaySpace, MonitoringPlotsPath);
 
-    TList *plots = new TList();
+    TList* plots = new TList();
     string OutputFileNamePrefix0(OutputFileNamePrefix.Data());
     string listName = OutPutFolder0 + OutputFileNamePrefix0 + "_plots.root";
-    const char *TListName = listName.c_str();
+    const char* TListName = listName.c_str();
     DisplyText("Plot list path", DisplaySpace, listName);
 
     cout << "\n";
@@ -109,8 +117,8 @@ void Uniform_sample_generator(
 
     cout << "\nCreating plot directories...\n";
 
-    system(("rm -r " + OutPutFolder0).c_str()); // Delete old lundPath
-    system(("mkdir -p " + OutPutFolder0).c_str()); // Make new lundPath
+    system(("rm -r " + OutPutFolder0).c_str()); // Delete old output folder
+    system(("mkdir -p " + OutPutFolder0).c_str()); // Make new output folder
 
     system(("mkdir -p " + lundPath0).c_str()); // Make new lundfiles folder
     system(("mkdir -p " + mchipoPath0).c_str()); // Make new mchipo folder
@@ -119,14 +127,19 @@ void Uniform_sample_generator(
 
     system(("mkdir -p " + MonitoringPlotsPath0).c_str()); // Make new monitoring plots folder
 
-    if (GenerateLundFiles) {
+    /* Add particles in event below*/
+    TVector3 vtx(0, 0, -3); //TODO: ask Adi where should the vertex be!
+
+    if (GenerateLundFiles)
+    {
         InitHistograms(Ebeam);
 
         // if (nFiles > nEvents / 10000) { nFiles = nEvents / 10000; }
 
         cout << "\nGenerating lund files...\n\n";
 
-        for (int iFiles = 1; iFiles < nFiles + 1; iFiles++) {
+        for (int iFiles = 1; iFiles < nFiles + 1; iFiles++)
+        {
             TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles); // TODO: figure out if LUND files are '.txt' or '.dat' files
             cout << "OutFileName: " << std::setw(49) << OutFileName << "\n";
 
@@ -136,11 +149,13 @@ void Uniform_sample_generator(
 
             TString formatstring, outstring;
 
-            Generate_uniform_event(EnforceMomentumConservation, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles,
-                                   targP, beamP, interactN, beamType = 11, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min,
+            Generate_uniform_event(vtx, TH1_hist_list_1e, TH2_hist_list_1e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
+                                   beamE_in_lundfiles, Ebeam, weight, mass_e, theta_e_min, theta_e_max);
+            Generate_uniform_event(vtx, EnforceMomentumConservation, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles,
+                                   targP, beamP, interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min,
                                    theta_p_max);
-            Generate_uniform_event(EnforceMomentumConservation, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles,
-                                   targP, beamP, interactN, beamType = 11, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min,
+            Generate_uniform_event(vtx, EnforceMomentumConservation, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles,
+                                   targP, beamP, interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min,
                                    theta_n_max);
 
             OutFile.close();
@@ -148,12 +163,47 @@ void Uniform_sample_generator(
 
         cout << "\nPlotting and saving monitoring plots\n\n";
 
-        TCanvas *c1 = new TCanvas("canvas", "canvas", 1000, 750); // normal res
+        TCanvas* c1 = new TCanvas("canvas", "canvas", 1000, 750); // normal res
         c1->SetGrid(), c1->SetBottomMargin(0.14), c1->SetLeftMargin(0.16), c1->SetRightMargin(0.12), c1->cd();
 
         int num = 0;
 
-        for (int i = 0; i < TH1_hist_list_ep.size(); i++) {
+        for (int i = 0; i < TH1_hist_list_1e.size(); i++)
+        {
+            TH1_hist_list_1e[i]->Sumw2();
+            TH1_hist_list_1e[i]->GetXaxis()->CenterTitle();
+            TH1_hist_list_1e[i]->GetXaxis()->SetTitleSize(0.06);
+            TH1_hist_list_1e[i]->GetXaxis()->SetLabelSize(0.0425);
+            TH1_hist_list_1e[i]->GetYaxis()->SetTitle("Number of events");
+            TH1_hist_list_1e[i]->GetYaxis()->CenterTitle();
+            TH1_hist_list_1e[i]->GetYaxis()->SetTitleSize(0.06);
+            TH1_hist_list_1e[i]->GetYaxis()->SetLabelSize(0.0425);
+            plots->Add(TH1_hist_list_1e[i]);
+
+            TH1_hist_list_1e[i]->Draw();
+            string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_1e[i]->GetName() + ".png";
+            c1->SaveAs(SavePath.c_str());
+            ++num;
+        }
+
+        for (int i = 0; i < TH2_hist_list_1e.size(); i++)
+        {
+            TH2_hist_list_1e[i]->GetXaxis()->CenterTitle();
+            TH2_hist_list_1e[i]->GetXaxis()->SetTitleSize(0.06);
+            TH2_hist_list_1e[i]->GetXaxis()->SetLabelSize(0.0425);
+            TH2_hist_list_1e[i]->GetYaxis()->CenterTitle();
+            TH2_hist_list_1e[i]->GetYaxis()->SetTitleSize(0.06);
+            TH2_hist_list_1e[i]->GetYaxis()->SetLabelSize(0.0425);
+            plots->Add(TH2_hist_list_1e[i]);
+
+            TH2_hist_list_1e[i]->Draw("colz");
+            string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_1e[i]->GetName() + ".png";
+            c1->SaveAs(SavePath.c_str());
+            ++num;
+        }
+
+        for (int i = 0; i < TH1_hist_list_ep.size(); i++)
+        {
             TH1_hist_list_ep[i]->Sumw2();
             TH1_hist_list_ep[i]->GetXaxis()->CenterTitle();
             TH1_hist_list_ep[i]->GetXaxis()->SetTitleSize(0.06);
@@ -170,7 +220,8 @@ void Uniform_sample_generator(
             ++num;
         }
 
-        for (int i = 0; i < TH2_hist_list_ep.size(); i++) {
+        for (int i = 0; i < TH2_hist_list_ep.size(); i++)
+        {
             TH2_hist_list_ep[i]->GetXaxis()->CenterTitle();
             TH2_hist_list_ep[i]->GetXaxis()->SetTitleSize(0.06);
             TH2_hist_list_ep[i]->GetXaxis()->SetLabelSize(0.0425);
@@ -185,7 +236,8 @@ void Uniform_sample_generator(
             ++num;
         }
 
-        for (int i = 0; i < TH1_hist_list_en.size(); i++) {
+        for (int i = 0; i < TH1_hist_list_en.size(); i++)
+        {
             TH1_hist_list_en[i]->Sumw2();
             TH1_hist_list_en[i]->GetXaxis()->CenterTitle();
             TH1_hist_list_en[i]->GetXaxis()->SetTitleSize(0.06);
@@ -202,7 +254,8 @@ void Uniform_sample_generator(
             ++num;
         }
 
-        for (int i = 0; i < TH2_hist_list_en.size(); i++) {
+        for (int i = 0; i < TH2_hist_list_en.size(); i++)
+        {
             TH2_hist_list_en[i]->GetXaxis()->CenterTitle();
             TH2_hist_list_en[i]->GetXaxis()->SetTitleSize(0.06);
             TH2_hist_list_en[i]->GetXaxis()->SetLabelSize(0.0425);
@@ -217,12 +270,14 @@ void Uniform_sample_generator(
             ++num;
         }
 
-        TFile *plots_fout = new TFile(TListName, "recreate");
+        TFile* plots_fout = new TFile(TListName, "recreate");
         plots_fout->cd();
         plots->Write();
         plots_fout->Write();
         plots_fout->Close();
-    } else {
+    }
+    else
+    {
         cout << "\nLund files generation disabled.\n";
     }
 }

@@ -5,6 +5,25 @@
 #include "Histograms.h"
 
 void InitHistograms(const double &Ebeam) {
+    /* 1e events */
+    hTheta_e_1e = new TH1D("Theta_e_1e", "#theta_{e} in e-e';#theta_{e} [#circ]", 200, 0, 50);
+    TH1_hist_list_1e.push_back(hTheta_e_1e);
+
+    hPhi_e_1e = new TH1D("Phi_e_1e", "#phi_{e} in e-e';#phi_{e} [#circ]", 200, -180, 180);
+    TH1_hist_list_1e.push_back(hPhi_e_1e);
+
+    hP_e_1e = new TH1D("P_e_1e", "P_{e} in e-e';P_{e} [GeV]", 200, 0, Ebeam * 1.1);
+    TH1_hist_list_1e.push_back(hP_e_1e);
+
+    hTheta_e_VS_Phi_e_1e = new TH2D("Theta_e_VS_Phi_e_1e", "#theta_{e} vs. #phi_{e} in e-e';#phi_{e} [#circ];#theta_{e} [#circ]", 200, -180, 180, 200, 0, 50);
+    TH2_hist_list_1e.push_back(hTheta_e_VS_Phi_e_1e);
+
+    hTheta_e_VS_P_e_1e = new TH2D("Theta_e_VS_P_e_1e", "#theta_{e} vs. P_{e} in e-e';P_{e} [GeV];#theta_{e} [#circ]", 200, 0, Ebeam * 1.1, 200, 0, 50);
+    TH2_hist_list_1e.push_back(hTheta_e_VS_P_e_1e);
+
+    hPhi_e_VS_P_e_1e = new TH2D("Phi_e_VS_P_e_1e", "#phi_{e} vs. P_{e} in e-e';P_{e} [GeV];#phi_{e} [#circ]", 200, 0, Ebeam * 1.1, 200, -180, 180);
+    TH2_hist_list_1e.push_back(hPhi_e_VS_P_e_1e);
+
     /* ep events */
     hTheta_e_ep = new TH1D("Theta_e_ep", "#theta_{e} in e-p;#theta_{e} [#circ]", 200, 0, 50);
     TH1_hist_list_ep.push_back(hTheta_e_ep);
