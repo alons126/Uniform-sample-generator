@@ -66,6 +66,9 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
 
         hPhi_p_VS_P_p_ep = new TH2D("Phi_p_VS_P_p_ep", "#phi_{p} vs. P_{p} in e-p;P_{p} [GeV];#phi_{p} [#circ]", 200, 0, Ebeam * 1.1, 200, -180, 180);
         TH2_hist_list_ep.push_back(hPhi_p_VS_P_p_ep);
+
+        hP_e_VS_P_p_ep = new TH2D("P_e_VS_P_p_ep", "P_{e} vs. P_{p} in e-p;P_{p} [GeV];P_{e} [GeV]", 200, 0, Ebeam * 1.1, 200, 0, Ebeam * 1.1);
+        TH2_hist_list_ep.push_back(hP_e_VS_P_p_ep);
     }
 
     if (gen_en_events)
@@ -106,5 +109,8 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
 
         hPhi_n_VS_P_n_en = new TH2D("Phi_n_VS_P_n_en", "#phi_{n} vs. P_{n} in e-n;P_{n} [GeV];#phi_{n} [#circ]", 200, 0, Ebeam * 1.1, 200, -180, 180);
         TH2_hist_list_en.push_back(hPhi_n_VS_P_n_en);
+
+        hP_e_VS_P_n_en = new TH2D("P_e_VS_P_n_en", "P_{e} vs. P_{n} in e-p;P_{n} [GeV];P_{e} [GeV]", 200, 0, Ebeam * 1.1, 200, 0, Ebeam * 1.1);
+        TH2_hist_list_en.push_back(hP_e_VS_P_n_en);
     }
 }
