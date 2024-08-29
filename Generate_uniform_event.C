@@ -41,7 +41,7 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1*> TH1_hist_list, vector<TH2
 }
 
 /* Uniform (e,e'p) and (e,e'n) events */
-void Generate_uniform_event(TVector3 vtx, const bool& EnforceMomentumConservation, vector<TH1*> TH1_hist_list, vector<TH2*> TH2_hist_list, ofstream& OutFile,
+void Generate_uniform_event(TVector3 vtx, vector<TH1*> TH1_hist_list, vector<TH2*> TH2_hist_list, ofstream& OutFile,
                             TString formatstring, TString outstring, TRandom3& ran, int N_pid, int nEvents = 10000, const int nParticles = 2, double targP = 0.,
                             double beamP = 0., int interactN = 1, int beamType = 11, double beamE_in_lundfiles = -99, double Ebeam = -99, double weight = 1,
                             double mass_e = 0.511e-3, double mass_N = 0.938272, double theta_e_min = 5., double theta_e_max = 40., double theta_N_min = 5.,
