@@ -31,11 +31,14 @@ bool findSubstring(string string1, string string2)
     }
 }
 
-void ReplaceSubStr(string& str, const string& subStr, const string& replacement)
+void ReplaceSubStr(string &str, const string &subStr, const string &replacement)
 {
     bool PrintOut = false;
 
-    if (PrintOut) { cout << "\nstr0 = " << str << "\n"; }
+    if (PrintOut)
+    {
+        cout << "\nstr0 = " << str << "\n";
+    }
 
     string TempSource = str;
 
@@ -53,7 +56,10 @@ void ReplaceSubStr(string& str, const string& subStr, const string& replacement)
 
     str = TempSource;
 
-    if (PrintOut) { cout << "str1 = " << str << "\n"; }
+    if (PrintOut)
+    {
+        cout << "str1 = " << str << "\n";
+    }
 }
 
 TString ConfigTopDir(TString OutPutFolder)

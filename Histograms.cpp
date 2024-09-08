@@ -4,7 +4,7 @@
 
 #include "Histograms.h"
 
-void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events, const double& Ebeam)
+void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events, const double &Ebeam)
 {
     if (gen_1e_events)
     {

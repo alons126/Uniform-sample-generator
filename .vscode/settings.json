@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "Uniform_sample_generator.C": "cpp",
+        "Generate_uniform_event.C": "cpp",
+        "generate_protons.C": "cpp",
+        "addParticle.C": "cpp",
+        "BoolToString.C": "cpp",
+        "DisplyText.C": "cpp"
+    }
+}

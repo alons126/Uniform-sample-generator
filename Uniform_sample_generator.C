@@ -14,17 +14,14 @@
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
 
-//TODO: make sure again that the output file is in the LUND format!
-//TODO: Ask Andrew which GCARD and YAML files to use!
-//TODO: Talk to Andrew - wrong environment file?
-//TODO: Talk to Andrew - GENIE to LUND file is outdated!
-//TODO: ask Adi where should the vertex be!
+// TODO: Ask Andrew which GCARD and YAML files to use!
+// TODO: Talk to Andrew - GENIE to LUND file is outdated!
 
 void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events, double Ebeam = 5.98636,
                               TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
                               // TString OutPutFolder = "./OutPut/",
                               // TString OutputFileNamePrefix = "Uniform_sample",
-                              int nFiles = 10, int nEvents = 10000,
+                              int nFiles = 10000, int nEvents = 10000,
                               double theta_e_min = 5., double theta_e_max = 40.,
                               double theta_p_min = 5., double theta_p_max = 45.,
                               double theta_n_min = 5., double theta_n_max = 35.)
@@ -107,15 +104,15 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     string MonitoringPlotsPath0(MonitoringPlotsPath.Data());
     DisplyText("MonitoringPlotsPath", DisplaySpace, MonitoringPlotsPath);
 
-    TList* plots = new TList();
+    TList *plots = new TList();
     string OutputFileNamePrefix0(OutputFileNamePrefix.Data());
     string listName = OutPutFolder0 + OutputFileNamePrefix0 + "_plots.root";
-    const char* TListName = listName.c_str();
+    const char *TListName = listName.c_str();
     DisplyText("Plot list path", DisplaySpace, listName);
 
     cout << "\n";
 
-    //Not useful usually
+    // Not useful usually
     double targP = 0.; // polarization
     double beamP = 0.; // polarization
     int interactN = 1;
@@ -133,18 +130,18 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
     cout << "\nCreating plot directories...\n";
 
-    system(("rm -r " + OutPutFolder0).c_str()); // Delete old output folder
+    system(("rm -r " + OutPutFolder0).c_str());    // Delete old output folder
     system(("mkdir -p " + OutPutFolder0).c_str()); // Make new output folder
 
-    system(("mkdir -p " + lundPath0).c_str()); // Make new lundfiles folder
-    system(("mkdir -p " + mchipoPath0).c_str()); // Make new mchipo folder
+    system(("mkdir -p " + lundPath0).c_str());      // Make new lundfiles folder
+    system(("mkdir -p " + mchipoPath0).c_str());    // Make new mchipo folder
     system(("mkdir -p " + reconhipoPath0).c_str()); // Make new reconhipo folder
     system(("mkdir -p " + rootfilesPath0).c_str()); // Make new rootfiles folder
 
     system(("mkdir -p " + MonitoringPlotsPath0).c_str()); // Make new monitoring plots folder
 
     /* Add particles in event below*/
-    TVector3 vtx(0, 0, -3); //TODO: ask Adi where should the vertex be!
+    TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository)
 
     if (GenerateLundFiles)
     {
@@ -156,12 +153,15 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
         for (int iFiles = 1; iFiles < nFiles + 1; iFiles++)
         {
-            TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles); // TODO: figure out if LUND files are '.txt' or '.dat' files
+            TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
             cout << "OutFileName: " << std::setw(49) << OutFileName << "\n";
 
             ofstream OutFile;
             OutFile.open(OutFileName);
-            if (!OutFile.is_open()) { cout << "Output file cannot be created" << endl; }
+            if (!OutFile.is_open())
+            {
+                cout << "Output file cannot be created" << endl;
+            }
 
             TString formatstring, outstring;
 
@@ -190,7 +190,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
         cout << "\nPlotting and saving monitoring plots\n\n";
 
-        TCanvas* c1 = new TCanvas("canvas", "canvas", 1000, 750); // normal res
+        TCanvas *c1 = new TCanvas("canvas", "canvas", 1000, 750); // normal res
         c1->SetGrid(), c1->SetBottomMargin(0.14), c1->SetLeftMargin(0.16), c1->SetRightMargin(0.12), c1->cd();
 
         int num = 0;
@@ -306,7 +306,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
             }
         }
 
-        TFile* plots_fout = new TFile(TListName, "recreate");
+        TFile *plots_fout = new TFile(TListName, "recreate");
         plots_fout->cd();
         plots->Write();
         plots_fout->Write();

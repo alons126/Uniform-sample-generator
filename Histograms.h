@@ -46,4 +46,4 @@ TH1D *hTheta_n_en, *hPhi_n_en, *hP_n_en;
 TH2D *hTheta_n_VS_Phi_n_en, *hTheta_n_VS_P_n_en, *hPhi_n_VS_P_n_en;
 TH2D *hP_e_VS_P_n_en;
 
-#endif //HISTOGRAMS_H
+#endif // HISTOGRAMS_H

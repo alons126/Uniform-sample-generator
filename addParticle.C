@@ -8,7 +8,8 @@
 
 using namespace std;
 
-TString addParticle(int part_idx, int pid, TVector3 momentum, double mass, TVector3 vtx, int active = 1) {
+TString addParticle(int part_idx, int pid, TVector3 momentum, double mass, TVector3 vtx, int active = 1)
+{
     // LUND info for each particle in the event
     TString formatstring = "%i \t %.3f \t %i \t %i \t %i \t %i \t %.5f \t %.5f \t %.5f \t %.5f \t %.5f \t %.5f \t %.5f \t %.5f \n";
     double energy = sqrt(mass * mass + momentum.Mag2());
