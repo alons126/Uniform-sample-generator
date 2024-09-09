@@ -17,8 +17,11 @@
 // TODO: Ask Andrew which GCARD and YAML files to use!
 // TODO: Talk to Andrew - GENIE to LUND file is outdated!
 
-void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events, double Ebeam = 5.98636,
-                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
+void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events,
+                            //   double Ebeam = 5.98636,
+                              double Ebeam = 4.02962,
+                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
+                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/",
                               // TString OutPutFolder = "./OutPut/",
                               // TString OutputFileNamePrefix = "Uniform_sample",
                               int nFiles = 10000, int nEvents = 10000,
