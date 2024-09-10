@@ -1,0 +1,29 @@
+{
+	"files": [
+		{
+			"path": "Uniform_sample_generator.C",
+			"bookmarks": [
+				{
+					"line": 19,
+					"column": 30,
+					"label": "Uniform sample generator"
+				}
+			]
+		},
+		{
+			"path": "Generate_uniform_event.C",
+			"bookmarks": [
+				{
+					"line": 5,
+					"column": 29,
+					"label": "Uniform (e,e') events"
+				},
+				{
+					"line": 42,
+					"column": 40,
+					"label": "Uniform (e,e'N) events"
+				}
+			]
+		}
+	]
+}
