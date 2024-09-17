@@ -26,7 +26,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                               TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
                               // TString OutPutFolder = "./OutPut/",
                               // TString OutputFileNamePrefix = "Uniform_sample",
-                              int nFiles = 10000, int nEvents = 10000,
+                              int nFiles = 1000, int nEvents = 10000,
                               double theta_e_min = 5., double theta_e_max = 40.,
                               double theta_p_min = 5., double theta_p_max = 45.,
                               double theta_n_min = 5., double theta_n_max = 35.)

@@ -5,8 +5,8 @@
 
 void CodeRun()
 {
-    Uniform_sample_generator_e_tester(true, false, false);
-    // Uniform_sample_generator(true, false, false);
-    // Uniform_sample_generator(false, true, false);
-    // Uniform_sample_generator(false, false, true);
+    // Uniform_sample_generator_e_tester(true, false, false);
+    Uniform_sample_generator(true, false, false);
+    Uniform_sample_generator(false, true, false);
+    Uniform_sample_generator(false, false, true);
 }
