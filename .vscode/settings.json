@@ -5,6 +5,10 @@
         "generate_protons.C": "cpp",
         "addParticle.C": "cpp",
         "BoolToString.C": "cpp",
-        "DisplyText.C": "cpp"
+        "DisplyText.C": "cpp",
+        "Generate_uniform_event copy.C": "cpp",
+        "Generate_uniform_event_e_tester.C": "cpp",
+        "Uniform_sample_generator copy.C": "cpp",
+        "Uniform_sample_generator_e_tester.C": "cpp"
     }
 }

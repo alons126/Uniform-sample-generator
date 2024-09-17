@@ -14,12 +14,12 @@
 			"path": "Generate_uniform_event.C",
 			"bookmarks": [
 				{
-					"line": 5,
+					"line": 42,
 					"column": 29,
 					"label": "Uniform (e,e') events"
 				},
 				{
-					"line": 42,
+					"line": 79,
 					"column": 40,
 					"label": "Uniform (e,e'N) events"
 				}
