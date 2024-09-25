@@ -14,16 +14,15 @@
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
 
-// TODO: Ask Andrew which GCARD and YAML files to use!
 // TODO: Talk to Andrew - GENIE to LUND file is outdated!
 
 void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events,
                               double Ebeam = 5.98636,
-                            //   double Ebeam = 4.02962,
-                            //   double Ebeam = 2.07052,
-                                TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
-                            //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/",
-                            //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
+                              //   double Ebeam = 4.02962,
+                              //   double Ebeam = 2.07052,
+                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
+                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/",
+                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
                               // TString OutPutFolder = "./OutPut/",
                               // TString OutputFileNamePrefix = "Uniform_sample",
                               int nFiles = 1000, int nEvents = 10000,
@@ -178,16 +177,14 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
             if (gen_ep_events)
             {
-                Generate_uniform_event(vtx, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles,
-                                       targP, beamP, interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min,
-                                       theta_p_max);
+                Generate_uniform_event(vtx, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP, interactN,
+                                       beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min, theta_p_max);
             }
 
             if (gen_en_events)
             {
-                Generate_uniform_event(vtx, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles,
-                                       targP, beamP, interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min,
-                                       theta_n_max);
+                Generate_uniform_event(vtx, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP, interactN,
+                                       beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min, theta_n_max);
             }
 
             OutFile.close();

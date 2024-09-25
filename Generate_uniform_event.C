@@ -3,6 +3,26 @@
 #include "addParticle.C"
 #include "Histograms.h"
 
+double CalcdPhi(double dPhiTemp)
+{
+    double dPhi;
+
+    if (dPhiTemp > 180.0)
+    {
+        dPhi = dPhiTemp - 360.0;
+    }
+    else if (dPhiTemp < -180.0)
+    {
+        dPhi = dPhiTemp + 360.0;
+    }
+    else
+    {
+        dPhi = dPhiTemp;
+    }
+
+    return dPhi;
+}
+
 /* Uniform electron events (electron tester) */
 void Generate_uniform_event_e_tester(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH2 *> TH2_hist_list, ofstream &OutFile, TString formatstring, TString outstring, TRandom3 &ran,
                                      int nEvents = 10000, double targP = 0., double beamP = 0., int interactN = 1, int beamType = 11, double beamE_in_lundfiles = -99,
@@ -95,19 +115,18 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
         outstring = Form(formatstring, nParticles, 1 /* A */, 1 /* Z */, targP, beamP, beamType, beamE_in_lundfiles, interactN, i, weight);
         // OutFile << outstring;
 
-        /* Nucleon - uniform Theta_N, Phi_N, and P_N */
+        /* Nucleon: uniform Theta_N, Phi_N, and P_N */
         TVector3 P_N_3v;
         double Theta_N = ran.Uniform(theta_N_min, theta_N_max); // Uniform Theta_N from theta_N_min to theta_N_max
         double Phi_N = ran.Uniform(-180., 180.);                // Uniform Phi_N from -180 to +180
         double P_N = ran.Uniform(0, Ebeam);                     // Uniform P_N from 0 to P_N = beamE
         P_N_3v.SetMagThetaPhi(P_N, Theta_N * TMath::DegToRad(), Phi_N * TMath::DegToRad());
 
-        /* Electron */
+        /* Electron: constant Theta_e; Phi_e is the inverse of Phi_N; and constant P_e */
         TVector3 P_e_3v;
-        double Theta_e = 25.; // Constant Theta_e
-        double Phi_e = 0.;    // Constant Phi_e
-        double P_e = Ebeam;   // Constant P_e
-        // double P_e = ran.Uniform(P_N_3v.Mag(), Ebeam); // Uniform P_e from P_N to P_e = beamE
+        double Theta_e = 25.;                  // Constant Theta_e at Theta_e = 25 degrees
+        double Phi_e = CalcdPhi(Phi_N + 180.); // Phi_e is the opposite of Phi_N be adding 180 degrees
+        double P_e = Ebeam;                    // Constant P_e at P_e = Ebeam, since the electron is the trigger
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
 
         OutFile << outstring;
