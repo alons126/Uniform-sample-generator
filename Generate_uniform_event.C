@@ -2,26 +2,7 @@
 
 #include "addParticle.C"
 #include "Histograms.h"
-
-double CalcdPhi(double dPhiTemp)
-{
-    double dPhi;
-
-    if (dPhiTemp > 180.0)
-    {
-        dPhi = dPhiTemp - 360.0;
-    }
-    else if (dPhiTemp < -180.0)
-    {
-        dPhi = dPhiTemp + 360.0;
-    }
-    else
-    {
-        dPhi = dPhiTemp;
-    }
-
-    return dPhi;
-}
+#include "AngleCalc.h"
 
 /* Uniform electron events (electron tester) */
 void Generate_uniform_event_e_tester(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH2 *> TH2_hist_list, ofstream &OutFile, TString formatstring, TString outstring, TRandom3 &ran,
@@ -124,9 +105,9 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
 
         /* Electron: constant Theta_e; Phi_e is the inverse of Phi_N; and constant P_e */
         TVector3 P_e_3v;
-        double Theta_e = 25.;                  // Constant Theta_e at Theta_e = 25 degrees
-        double Phi_e = CalcdPhi(Phi_N + 180.); // Phi_e is the opposite of Phi_N be adding 180 degrees
-        double P_e = Ebeam;                    // Constant P_e at P_e = Ebeam, since the electron is the trigger
+        double Theta_e = 25.;           // Constant Theta_e at Theta_e = 25 degrees
+        double Phi_e = getPhi_e(Phi_N); // Phi_e is one of {-120, -60, 0, 60, 120, 180} that is the closest to 180 degrees away from phi_N
+        double P_e = Ebeam;             // Constant P_e at P_e = Ebeam, since the electron is the trigger
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
 
         OutFile << outstring;
