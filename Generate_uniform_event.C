@@ -82,8 +82,9 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
 void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH2 *> TH2_hist_list, ofstream &OutFile,
                             TString formatstring, TString outstring, TRandom3 &ran, int N_pid, int nEvents = 10000, const int nParticles = 2, double targP = 0.,
                             double beamP = 0., int interactN = 1, int beamType = 11, double beamE_in_lundfiles = -99, double Ebeam = -99, double weight = 1,
-                            double mass_e = 0.511e-3, double mass_N = 0.938272, double theta_e_min = 5., double theta_e_max = 40., double theta_N_min = 5.,
-                            double theta_N_max = 45.)
+                            double mass_e = 0.511e-3, double mass_N = 0.938272,
+                            double theta_e_min = 5., double theta_e_max = 40.,
+                            double theta_N_min = 5., double theta_N_max = 45.)
 {
     double pi = 3.14159265359;
     int i = 0;
@@ -134,6 +135,16 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
             hPhi_p_VS_P_p_ep->Fill(P_N_3v.Mag(), P_N_3v.Phi() * TMath::RadToDeg());
 
             hP_e_VS_P_p_ep->Fill(P_N_3v.Mag(), P_e_3v.Mag());
+            hP_e_VS_Theta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Mag());
+            hP_e_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Mag());
+
+            hTheta_e_VS_P_p_ep->Fill(P_N_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
+            hTheta_e_VS_Theta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
+            hTheta_e_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
+
+            hPhi_e_VS_P_p_ep->Fill(P_N_3v.Mag(), P_e_3v.Phi() * TMath::RadToDeg());
+            hPhi_e_VS_Theta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
+            hPhi_e_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
         }
         else if (N_pid == 2112)
         {
@@ -154,6 +165,16 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
             hPhi_n_VS_P_n_en->Fill(P_N_3v.Mag(), P_N_3v.Phi() * TMath::RadToDeg());
 
             hP_e_VS_P_n_en->Fill(P_N_3v.Mag(), P_e_3v.Mag());
+            hP_e_VS_Theta_n_en->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Mag());
+            hP_e_VS_Phi_n_en->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Mag());
+
+            hTheta_e_VS_P_n_en->Fill(P_N_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
+            hTheta_e_VS_Theta_n_en->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
+            hTheta_e_VS_Phi_n_en->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
+
+            hPhi_e_VS_P_n_en->Fill(P_N_3v.Mag(), P_e_3v.Phi() * TMath::RadToDeg());
+            hPhi_e_VS_Theta_n_en->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
+            hPhi_e_VS_Phi_n_en->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
         }
 
         ++i;

@@ -7,7 +7,6 @@
 #include "Generate_uniform_event.C"
 #include "DisplyText.C"
 #include "Histograms.cpp"
-// #include "ConfigBeamE.cpp"
 #include "ConfigPrefix.cpp"
 #include "ConfigTopDir.cpp"
 
@@ -17,15 +16,14 @@
 // TODO: Talk to Andrew - GENIE to LUND file is outdated!
 
 void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events,
-                              //   double Ebeam = 5.98636,
+                              double Ebeam = 5.98636,
                               //   double Ebeam = 4.02962,
-                              double Ebeam = 2.07052,
-                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
+                              //   double Ebeam = 2.07052,
+                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/",
-                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
-                              // TString OutPutFolder = "./OutPut/",
-                              // TString OutputFileNamePrefix = "Uniform_sample",
-                              int nFiles = 1000, int nEvents = 10000,
+                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
+                              int nFiles = 10, int nEvents = 10000,
+                              //   int nFiles = 1000, int nEvents = 10000,
                               double theta_e_min = 5., double theta_e_max = 40.,
                               double theta_p_min = 5., double theta_p_max = 45.,
                               double theta_n_min = 5., double theta_n_max = 35.)
@@ -56,17 +54,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     }
 
     TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
-    // OutPutFolder = ConfigTopDir(Ebeam); // reconfigure OutPutFolder according to working directory (ifarm or local)
     OutPutFolder = ConfigTopDir(gen_1e_events, gen_ep_events, gen_en_events, Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
-
-    /*if (EnforceMomCon)
-    {
-        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_wMomCon";
-    }
-    else
-    {
-        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_woMomCon";
-    }*/
 
     bool GenerateLundFiles = true;
     int DisplaySpace = 74;
@@ -82,9 +70,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
     TRandom3 ran(0);
     const int nParticles = 2;
-    double mass_e = 0.511e-3;
-    double mass_p = 0.938272;
-    double mass_n = 0.93957;
+    double mass_e = 0.511e-3, mass_p = 0.938272, mass_n = 0.93957;
     DisplyText("nParticles", DisplaySpace, nParticles);
     DisplyText("mass_e [GeV]", DisplaySpace, mass_e);
     DisplyText("mass_p [GeV]", DisplaySpace, mass_p);
@@ -126,7 +112,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     DisplyText("interactN", DisplaySpace, interactN);
     DisplyText("beamType", DisplaySpace, beamType);
 
-    double beamE_in_lundfiles = -99; // GeV
+    double beamE_in_lundfiles = Ebeam; // GeV - TEST!
+    // double beamE_in_lundfiles = -99; // GeV
     DisplyText("beamE_in_lundfiles", DisplaySpace, beamE_in_lundfiles);
 
     double weight = 1;
@@ -150,8 +137,6 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     if (GenerateLundFiles)
     {
         InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
-
-        // if (nFiles > nEvents / 10000) { nFiles = nEvents / 10000; }
 
         cout << "\nGenerating lund files...\n\n";
 
@@ -199,6 +184,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
         if (gen_1e_events)
         {
+            string pdfFile_1e_0 = MonitoringPlotsPath0 + "/Uniform_1e_plots_" + ConfigBeamE(Ebeam) + ".pdf";
+            const char *pdfFile_1e = pdfFile_1e_0.c_str();
+            cout << pdfFile_1e_0 << "\n\n";
+            cout << pdfFile_1e << "\n\n";
+            c1->Print(Form("%s[", pdfFile_1e)); // Open the PDF file
+
             for (int i = 0; i < TH1_hist_list_1e.size(); i++)
             {
                 TH1_hist_list_1e[i]->Sumw2();
@@ -214,6 +205,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                 TH1_hist_list_1e[i]->Draw();
                 string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_1e[i]->GetName() + ".png";
                 c1->SaveAs(SavePath.c_str());
+                c1->Print(pdfFile_1e); // Save the current canvas (histogram) to the PDF
+                c1->Clear();
                 ++num;
             }
 
@@ -230,12 +223,22 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                 TH2_hist_list_1e[i]->Draw("colz");
                 string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_1e[i]->GetName() + ".png";
                 c1->SaveAs(SavePath.c_str());
+                c1->Print(pdfFile_1e); // Save the current canvas (histogram) to the PDF
+                c1->Clear();
                 ++num;
             }
+
+            c1->Print(Form("%s]", pdfFile_1e)); // Close the PDF file
         }
 
         if (gen_ep_events)
         {
+            string pdfFile_ep_0 = MonitoringPlotsPath0 + "/Uniform_ep_plots_" + ConfigBeamE(Ebeam) + ".pdf";
+            const char *pdfFile_ep = pdfFile_ep_0.c_str();
+            cout << pdfFile_ep_0 << "\n\n";
+            cout << pdfFile_ep << "\n\n";
+            c1->Print(Form("%s[", pdfFile_ep)); // Open the PDF file
+
             for (int i = 0; i < TH1_hist_list_ep.size(); i++)
             {
                 TH1_hist_list_ep[i]->Sumw2();
@@ -251,6 +254,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                 TH1_hist_list_ep[i]->Draw();
                 string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_ep[i]->GetName() + ".png";
                 c1->SaveAs(SavePath.c_str());
+                c1->Print(pdfFile_ep); // Save the current canvas (histogram) to the PDF
+                c1->Clear();
                 ++num;
             }
 
@@ -267,12 +272,22 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                 TH2_hist_list_ep[i]->Draw("colz");
                 string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_ep[i]->GetName() + ".png";
                 c1->SaveAs(SavePath.c_str());
+                c1->Print(pdfFile_ep); // Save the current canvas (histogram) to the PDF
+                c1->Clear();
                 ++num;
             }
+
+            c1->Print(Form("%s]", pdfFile_ep)); // Close the PDF file
         }
 
         if (gen_en_events)
         {
+            string pdfFile_en_0 = MonitoringPlotsPath0 + "/Uniform_en_plots_" + ConfigBeamE(Ebeam) + ".pdf";
+            const char *pdfFile_en = pdfFile_en_0.c_str();
+            cout << pdfFile_en_0 << "\n\n";
+            cout << pdfFile_en << "\n\n";
+            c1->Print(Form("%s[", pdfFile_en)); // Open the PDF file
+
             for (int i = 0; i < TH1_hist_list_en.size(); i++)
             {
                 TH1_hist_list_en[i]->Sumw2();
@@ -288,6 +303,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                 TH1_hist_list_en[i]->Draw();
                 string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_en[i]->GetName() + ".png";
                 c1->SaveAs(SavePath.c_str());
+                c1->Print(pdfFile_en); // Save the current canvas (histogram) to the PDF
+                c1->Clear();
                 ++num;
             }
 
@@ -304,8 +321,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                 TH2_hist_list_en[i]->Draw("colz");
                 string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_en[i]->GetName() + ".png";
                 c1->SaveAs(SavePath.c_str());
+                c1->Print(pdfFile_en); // Save the current canvas (histogram) to the PDF
+                c1->Clear();
                 ++num;
             }
+
+            c1->Print(Form("%s]", pdfFile_en)); // Close the PDF file
         }
 
         TFile *plots_fout = new TFile(TListName, "recreate");

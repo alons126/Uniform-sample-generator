@@ -33,7 +33,9 @@ TH2D *hTheta_e_VS_Phi_e_ep, *hTheta_e_VS_P_e_ep, *hPhi_e_VS_P_e_ep;
 
 TH1D *hTheta_p_ep, *hPhi_p_ep, *hP_p_ep;
 TH2D *hTheta_p_VS_Phi_p_ep, *hTheta_p_VS_P_p_ep, *hPhi_p_VS_P_p_ep;
-TH2D *hP_e_VS_P_p_ep;
+TH2D *hP_e_VS_P_p_ep, *hP_e_VS_Theta_p_ep, *hP_e_VS_Phi_p_ep;
+TH2D *hTheta_e_VS_P_p_ep, *hTheta_e_VS_Theta_p_ep, *hTheta_e_VS_Phi_p_ep;
+TH2D *hPhi_e_VS_P_p_ep, *hPhi_e_VS_Theta_p_ep, *hPhi_e_VS_Phi_p_ep;
 
 /* en events */
 vector<TH1 *> TH1_hist_list_en;
@@ -44,6 +46,8 @@ TH2D *hTheta_e_VS_Phi_e_en, *hTheta_e_VS_P_e_en, *hPhi_e_VS_P_e_en;
 
 TH1D *hTheta_n_en, *hPhi_n_en, *hP_n_en;
 TH2D *hTheta_n_VS_Phi_n_en, *hTheta_n_VS_P_n_en, *hPhi_n_VS_P_n_en;
-TH2D *hP_e_VS_P_n_en;
+TH2D *hP_e_VS_P_n_en, *hP_e_VS_Theta_n_en, *hP_e_VS_Phi_n_en;
+TH2D *hTheta_e_VS_P_n_en, *hTheta_e_VS_Theta_n_en, *hTheta_e_VS_Phi_n_en;
+TH2D *hPhi_e_VS_P_n_en, *hPhi_e_VS_Theta_n_en, *hPhi_e_VS_Phi_n_en;
 
 #endif // HISTOGRAMS_H
