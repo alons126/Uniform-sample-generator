@@ -128,7 +128,7 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
 
     system(("mkdir -p " + MonitoringPlotsPath0).c_str()); // Make new monitoring plots folder
 
-    /* Add particles in event below*/
+    /* Add particles in event below */
     TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository)
 
     if (GenerateLundFiles)
