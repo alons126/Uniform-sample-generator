@@ -11,7 +11,7 @@ include_directories(${ROOT_INCLUDE_DIRS})
 
 add_executable(Uniform_sample_generator main.cpp
         Uniform_sample_generator.C
-        addParticle.C
+        AddParticle.C
         Generate_uniform_event.C
         CodeRun.cpp
         BoolToString.C
