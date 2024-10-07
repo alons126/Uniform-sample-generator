@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "addParticle.C"
+#include "AddParticle.C"
 #include "Histograms.h"
 #include "AngleCalc.h"
 
@@ -27,7 +27,7 @@ void Generate_uniform_event_e_tester(TVector3 vtx, vector<TH1 *> TH1_hist_list, 
         double P_e = Ebeam;                                     // P_e is Ebeam to test Theta_e and Phi_e acceptance
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
         OutFile << outstring;
-        OutFile << addParticle(1, 11, P_e_3v, mass_e, vtx);
+        OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
 
         hTheta_e_1e->Fill(P_e_3v.Theta() * TMath::RadToDeg());
         hPhi_e_1e->Fill(P_e_3v.Phi() * TMath::RadToDeg());
@@ -64,7 +64,7 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
         double P_e = ran.Uniform(0, Ebeam);                     // Uniform P_e from 0 to P_e = beamE
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
         OutFile << outstring;
-        OutFile << addParticle(1, 11, P_e_3v, mass_e, vtx);
+        OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
 
         hTheta_e_1e->Fill(P_e_3v.Theta() * TMath::RadToDeg());
         hPhi_e_1e->Fill(P_e_3v.Phi() * TMath::RadToDeg());
@@ -112,8 +112,8 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
 
         OutFile << outstring;
-        OutFile << addParticle(1, 11, P_e_3v, mass_e, vtx);
-        OutFile << addParticle(2, N_pid, P_N_3v, mass_N, vtx);
+        OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
+        OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, vtx);
         // OutFile << "\n";
 
         if (N_pid == 2212)

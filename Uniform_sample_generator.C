@@ -9,6 +9,7 @@
 #include "Histograms.cpp"
 #include "ConfigPrefix.cpp"
 #include "ConfigTopDir.cpp"
+#include "targets.h"
 
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
@@ -112,8 +113,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     DisplyText("interactN", DisplaySpace, interactN);
     DisplyText("beamType", DisplaySpace, beamType);
 
-    double beamE_in_lundfiles = Ebeam; // GeV - TEST!
-    // double beamE_in_lundfiles = -99; // GeV
+    double beamE_in_lundfiles = Ebeam; // GeV
     DisplyText("beamE_in_lundfiles", DisplaySpace, beamE_in_lundfiles);
 
     double weight = 1;
@@ -131,8 +131,11 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
     system(("mkdir -p " + MonitoringPlotsPath0).c_str()); // Make new monitoring plots folder
 
-    /* Add particles in event below*/
-    TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository)
+    /* Add particles in event below */
+    string target = "1-foil";            // vtx-test-1
+    TVector3 vtx = randomVertex(target); // vtx-test-1
+
+    // TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository)
 
     if (GenerateLundFiles)
     {
