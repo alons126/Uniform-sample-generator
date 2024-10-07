@@ -109,7 +109,8 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
     DisplyText("interactN", DisplaySpace, interactN);
     DisplyText("beamType", DisplaySpace, beamType);
 
-    double beamE_in_lundfiles = -99; // GeV
+    double beamE_in_lundfiles = Ebeam; // GeV
+    // double beamE_in_lundfiles = -99; // GeV
     DisplyText("beamE_in_lundfiles", DisplaySpace, beamE_in_lundfiles);
 
     double weight = 1;
