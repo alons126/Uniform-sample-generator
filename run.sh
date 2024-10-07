@@ -2,7 +2,7 @@
 
 echo "- Re-pulling repository -----------------------------------------------"
 echo ""
-#git reset --hard
+git reset --hard
 git pull
 echo ""
 echo "- Lunching code -------------------------------------------------------"
