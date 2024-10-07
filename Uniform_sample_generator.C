@@ -134,7 +134,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     /* Add particles in event below */
     // string target = "1-foil";            // - vtx-test-1
     // TVector3 vtx = randomVertex(target); // - vtx-test-1
-    TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - torus_plus1-test
+    // TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - torus_plus1-test
+    TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - TorusSymmetric-test
 
     if (GenerateLundFiles)
     {
