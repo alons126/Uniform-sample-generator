@@ -14,7 +14,6 @@
         "deque": "cpp",
         "string": "cpp",
         "vector": "cpp",
-        "new": "cpp",
-        "AddParticle copy.C": "cpp"
+        "new": "cpp"
     }
 }

@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "AddParticle.C"
+#include "addParticle.C"
 #include "Histograms.h"
 #include "AngleCalc.h"
 
