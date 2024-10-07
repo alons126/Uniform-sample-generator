@@ -14,9 +14,12 @@ void CodeRun()
     // Uniform_sample_generator(false, true, false, 4.02962, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/");
     // Uniform_sample_generator(false, false, true, 4.02962, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/");
     
-    Uniform_sample_generator(true, false, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-TorusSymmetric-test/OutPut/");
-    Uniform_sample_generator(false, true, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-TorusSymmetric-test/OutPut/");
-    Uniform_sample_generator(false, false, true, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-TorusSymmetric-test/OutPut/");
+    Uniform_sample_generator(true, false, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-binaryFields-test/OutPut/");
+    Uniform_sample_generator(false, true, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-binaryFields-test/OutPut/");
+    Uniform_sample_generator(false, false, true, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-binaryFields-test/OutPut/");
+    // Uniform_sample_generator(true, false, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-TorusSymmetric-test/OutPut/");
+    // Uniform_sample_generator(false, true, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-TorusSymmetric-test/OutPut/");
+    // Uniform_sample_generator(false, false, true, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-TorusSymmetric-test/OutPut/");
     // Uniform_sample_generator(true, false, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-torus_plus1-test/OutPut/");
     // Uniform_sample_generator(false, true, false, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-torus_plus1-test/OutPut/");
     // Uniform_sample_generator(false, false, true, 5.98636, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-torus_plus1-test/OutPut/");
