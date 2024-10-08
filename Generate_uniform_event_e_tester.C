@@ -30,13 +30,13 @@ void Generate_uniform_event_e_tester(TVector3 vtx, vector<TH1 *> TH1_hist_list, 
         OutFile << outstring;
         OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
 
-        hTheta_e_1e->Fill(P_e_3v.Theta() * TMath::RadToDeg());
-        hPhi_e_1e->Fill(P_e_3v.Phi() * TMath::RadToDeg());
-        hP_e_1e->Fill(P_e_3v.Mag());
+        hTheta_e_Tester_e->Fill(P_e_3v.Theta() * TMath::RadToDeg());
+        hPhi_e_Tester_e->Fill(P_e_3v.Phi() * TMath::RadToDeg());
+        hP_e_Tester_e->Fill(P_e_3v.Mag());
 
-        hTheta_e_VS_Phi_e_1e->Fill(P_e_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
-        hTheta_e_VS_P_e_1e->Fill(P_e_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
-        hPhi_e_VS_P_e_1e->Fill(P_e_3v.Mag(), P_e_3v.Phi() * TMath::RadToDeg());
+        hTheta_e_VS_Phi_e_Tester_e->Fill(P_e_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
+        hTheta_e_VS_P_e_Tester_e->Fill(P_e_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
+        hPhi_e_VS_P_e_Tester_e->Fill(P_e_3v.Mag(), P_e_3v.Phi() * TMath::RadToDeg());
 
         ++i;
     }
