@@ -25,11 +25,11 @@ TH1D *hTheta_e_Tester_e, *hPhi_e_Tester_e, *hP_e_Tester_e;
 TH2D *hTheta_e_VS_Phi_e_Tester_e, *hTheta_e_VS_P_e_Tester_e, *hPhi_e_VS_P_e_Tester_e;
 
 /* 1e events */
-vector<TH1 *> TH1_hist_list_Tester_e;
-vector<TH2 *> TH2_hist_list_Tester_e;
+vector<TH1 *> TH1_hist_list_1e;
+vector<TH2 *> TH2_hist_list_1e;
 
-TH1D *hTheta_e_Tester_e, *hPhi_e_Tester_e, *hP_e_Tester_e;
-TH2D *hTheta_e_VS_Phi_e_Tester_e, *hTheta_e_VS_P_e_Tester_e, *hPhi_e_VS_P_e_Tester_e;
+TH1D *hTheta_e_1e, *hPhi_e_1e, *hP_e_1e;
+TH2D *hTheta_e_VS_Phi_e_1e, *hTheta_e_VS_P_e_1e, *hPhi_e_VS_P_e_1e;
 
 /* ep events */
 vector<TH1 *> TH1_hist_list_ep;
