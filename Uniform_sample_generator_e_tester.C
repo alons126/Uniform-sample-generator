@@ -5,12 +5,12 @@
 #include "TObjString.h"
 
 #include "Generate_uniform_event_e_tester.C"
+#include "ConfigTopDir_Tester_e.cpp"
 
 #if independent_tester
 #include "DisplyText.C"
 #include "Histograms.cpp"
 #include "ConfigPrefix.cpp"
-#include "ConfigTopDir.cpp"
 #endif
 
 /* root CodeRun.cpp -q -b */
@@ -35,7 +35,7 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
     cout << "===========================================================================\n\n";
 
     TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
-    OutPutFolder = ConfigTopDir(gen_1e_events, gen_ep_events, gen_en_events, Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
+    OutPutFolder = ConfigTopDir_Tester_e(Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
 
     bool GenerateLundFiles = true;
     int DisplaySpace = 74;

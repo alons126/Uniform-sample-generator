@@ -9,6 +9,7 @@
 
 using namespace std;
 
+#if independent_tester
 string GetCurrentDirectory()
 {
     char pwd[PATH_MAX];
@@ -79,8 +80,9 @@ TString ConfigTopDir(TString OutPutFolder)
         return CurrentDir + "/OutPut/";
     }
 }
+#endif
 
-TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events, const double Ebeam, TString OutPutFolder)
+TString ConfigTopDir_Tester_e(const double Ebeam, TString OutPutFolder)
 {
     string CurrentDir = GetCurrentDirectory();
     TString FuncOut;
@@ -93,19 +95,7 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
         string OutPutFolder0 = OutPutFolder.Data();
         string OutPutFolder1 = OutPutFolder0.substr(0, OutPutFolder0.find_last_of('/'));
 
-        if (gen_1e_events)
-        {
-            FuncOut = OutPutFolder1 + "_1e/";
-        }
-        else if (gen_ep_events)
-        {
-            FuncOut = OutPutFolder1 + "_ep/";
-        }
-        else if (gen_en_events)
-        {
-            FuncOut = OutPutFolder1 + "_en/";
-        }
-
+        FuncOut = OutPutFolder1 + "_Tester_e/";
         return FuncOut;
     }
     else
@@ -113,19 +103,7 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
         cout << "Current directory is '" << CurrentDir << endl;
         cout << "OutPut folder changed to '" << CurrentDir << "/OutPut/" << "'" << endl;
 
-        if (gen_1e_events)
-        {
-            FuncOut = CurrentDir + "/OutPut_1e/";
-        }
-        else if (gen_ep_events)
-        {
-            FuncOut = CurrentDir + "/OutPut_ep/";
-        }
-        else if (gen_en_events)
-        {
-            FuncOut = CurrentDir + "/OutPut_en/";
-        }
-
+        FuncOut = CurrentDir + "/OutPut_Tester_e/";
         return FuncOut;
     }
 }
