@@ -56,6 +56,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
     OutPutFolder = ConfigTopDir(gen_1e_events, gen_ep_events, gen_en_events, Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
 
+    string CurrentDir = GetCurrentDirectory();
+    if (findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator"))
+    {
+        nFiles = 10;
+    }
+
     bool GenerateLundFiles = true;
     int DisplaySpace = 74;
 
@@ -232,6 +238,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
             }
 
             c1->Print(Form("%s]", pdfFile_1e)); // Close the PDF file
+
+            c1->Clear();
+            delete c1;
+            gDirectory->Clear();
+            TH1_hist_list_1e.clear();
+            TH2_hist_list_1e.clear();
         }
 
         if (gen_ep_events)
@@ -281,6 +293,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
             }
 
             c1->Print(Form("%s]", pdfFile_ep)); // Close the PDF file
+            
+            c1->Clear();
+            delete c1;
+            gDirectory->Clear();
+            TH1_hist_list_ep.clear();
+            TH2_hist_list_ep.clear();
         }
 
         if (gen_en_events)
@@ -330,6 +348,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
             }
 
             c1->Print(Form("%s]", pdfFile_en)); // Close the PDF file
+                        
+            c1->Clear();
+            delete c1;
+            gDirectory->Clear();
+            TH1_hist_list_en.clear();
+            TH2_hist_list_en.clear();
         }
 
         TFile *plots_fout = new TFile(TListName, "recreate");

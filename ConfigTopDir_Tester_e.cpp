@@ -10,6 +10,8 @@
 using namespace std;
 
 #if independent_tester
+#include "ConfigBeamE.cpp"
+
 string GetCurrentDirectory()
 {
     char pwd[PATH_MAX];
@@ -100,10 +102,12 @@ TString ConfigTopDir_Tester_e(const double Ebeam, TString OutPutFolder)
     }
     else
     {
+        string OutTopDir = "/Users/alon/Downloads/" + ConfigBeamE(Ebeam);
+        
         cout << "Current directory is '" << CurrentDir << endl;
         cout << "OutPut folder changed to '" << CurrentDir << "/OutPut/" << "'" << endl;
 
-        FuncOut = CurrentDir + "/OutPut_Tester_e/";
+        FuncOut = OutTopDir + "/OutPut_Tester_e/";
         return FuncOut;
     }
 }

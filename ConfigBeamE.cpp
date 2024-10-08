@@ -2,6 +2,9 @@
 // Created by alons on 14/08/2024.
 //
 
+#ifndef CONFIG_BEAM_E_CPP
+#define CONFIG_BEAM_E_CPP
+
 #include <iomanip>
 #include <string>
 
@@ -49,3 +52,5 @@ TString ConfigBeamE(const double &BeamE, TString OutputFileNamePrefix)
     opfnPrefix = OutputFileNamePrefix + be;
     return opfnPrefix;
 }
+
+#endif // CONFIG_BEAM_E_CPP

@@ -7,6 +7,8 @@
 
 #include "TString.h"
 
+#include "ConfigBeamE.cpp"
+
 using namespace std;
 
 string GetCurrentDirectory()
@@ -110,20 +112,22 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
     }
     else
     {
+        string OutTopDir = "/Users/alon/Downloads/" + ConfigBeamE(Ebeam);
+
         cout << "Current directory is '" << CurrentDir << endl;
         cout << "OutPut folder changed to '" << CurrentDir << "/OutPut/" << "'" << endl;
 
         if (gen_1e_events)
         {
-            FuncOut = CurrentDir + "/OutPut_1e/";
+            FuncOut = OutTopDir + "/OutPut_1e/";
         }
         else if (gen_ep_events)
         {
-            FuncOut = CurrentDir + "/OutPut_ep/";
+            FuncOut = OutTopDir + "/OutPut_ep/";
         }
         else if (gen_en_events)
         {
-            FuncOut = CurrentDir + "/OutPut_en/";
+            FuncOut = OutTopDir + "/OutPut_en/";
         }
 
         return FuncOut;

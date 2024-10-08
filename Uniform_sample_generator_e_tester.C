@@ -23,8 +23,7 @@ void Uniform_sample_generator_e_tester( //
     TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_e_tester/",
     // TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_e_tester/",
     // TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_e_tester/",
-    int nFiles = 10, int nEvents = 10000,
-    // int nFiles = 100, int nEvents = 10000,
+    int nFiles = 100, int nEvents = 10000,
     double theta_e_min = 5., double theta_e_max = 40.,
     double theta_p_min = 5., double theta_p_max = 45.,
     double theta_n_min = 5., double theta_n_max = 35.)
@@ -36,6 +35,11 @@ void Uniform_sample_generator_e_tester( //
 
     TString OutputFileNamePrefix = ConfigPrefix(true, false, false, Ebeam);
     OutPutFolder = ConfigTopDir_Tester_e(Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
+
+    string CurrentDir = GetCurrentDirectory();
+    if (findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator")) {
+        nFiles = 10;
+    }
 
     bool GenerateLundFiles = true;
     int DisplaySpace = 74;
@@ -201,6 +205,12 @@ void Uniform_sample_generator_e_tester( //
         plots->Write();
         plots_fout->Write();
         plots_fout->Close();
+
+        c1->Clear();
+        delete c1;
+        gDirectory->Clear();
+        TH1_hist_list_Tester_e.clear();
+        TH2_hist_list_Tester_e.clear();
     }
     else
     {
