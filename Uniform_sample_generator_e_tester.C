@@ -150,6 +150,12 @@ void Uniform_sample_generator_e_tester( //
 
         int num = 0;
 
+        string pdfFile_Tester_e_0 = MonitoringPlotsPath0 + "/Uniform_Tester_e_plots_" + ConfigBeamE(Ebeam) + ".pdf";
+        const char *pdfFile_Tester_e = pdfFile_Tester_e_0.c_str();
+        cout << pdfFile_Tester_e_0 << "\n\n";
+        cout << pdfFile_Tester_e << "\n\n";
+        c1->Print(Form("%s[", pdfFile_Tester_e)); // Open the PDF file
+
         for (int i = 0; i < TH1_hist_list_Tester_e.size(); i++)
         {
             TH1_hist_list_Tester_e[i]->Sumw2();
@@ -165,6 +171,8 @@ void Uniform_sample_generator_e_tester( //
             TH1_hist_list_Tester_e[i]->Draw();
             string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_Tester_e[i]->GetName() + ".png";
             c1->SaveAs(SavePath.c_str());
+            c1->Print(pdfFile_Tester_e); // Save the current canvas (histogram) to the PDF
+            c1->Clear();
             ++num;
         }
 
@@ -181,8 +189,12 @@ void Uniform_sample_generator_e_tester( //
             TH2_hist_list_Tester_e[i]->Draw("colz");
             string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_Tester_e[i]->GetName() + ".png";
             c1->SaveAs(SavePath.c_str());
+            c1->Print(pdfFile_Tester_e); // Save the current canvas (histogram) to the PDF
+            c1->Clear();
             ++num;
         }
+
+        c1->Print(Form("%s]", pdfFile_Tester_e)); // Close the PDF file
 
         TFile *plots_fout = new TFile(TListName, "recreate");
         plots_fout->cd();
