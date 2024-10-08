@@ -14,8 +14,6 @@
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
 
-// TODO: Talk to Andrew - GENIE to LUND file is outdated!
-
 void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events,
                               double Ebeam = 5.98636,
                               //   double Ebeam = 4.02962,
@@ -137,6 +135,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     // TVector3 vtx = randomVertex(target); // - vtx-test-1
     // TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - torus_plus1-test
     TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - TorusSymmetric-test
+    // TODO: figure out which type of vertex (point, 1-foil, 4-foil) to use
 
     if (GenerateLundFiles)
     {

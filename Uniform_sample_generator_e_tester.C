@@ -4,20 +4,17 @@
 #include "TList.h"
 #include "TObjString.h"
 
+#include "Generate_uniform_event_e_tester.C"
+
 #if independent_tester
-#include "Generate_uniform_event.C"
 #include "DisplyText.C"
 #include "Histograms.cpp"
-// #include "ConfigBeamE.cpp"
 #include "ConfigPrefix.cpp"
 #include "ConfigTopDir.cpp"
 #endif
 
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
-
-// TODO: Ask Andrew which GCARD and YAML files to use!
-// TODO: Talk to Andrew - GENIE to LUND file is outdated!
 
 void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events,
                                          double Ebeam = 5.98636,
@@ -26,9 +23,8 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
                                          TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_e_tester/",
                                     //    TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_e_tester/",
                                        //    TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_e_tester/",
-                                       // TString OutPutFolder = "./OutPut/",
-                                       // TString OutputFileNamePrefix = "Uniform_sample",
-                                       int nFiles = 100, int nEvents = 10000,
+                                       int nFiles = 10, int nEvents = 10000,
+                                    //    int nFiles = 100, int nEvents = 10000,
                                        double theta_e_min = 5., double theta_e_max = 40.,
                                        double theta_p_min = 5., double theta_p_max = 45.,
                                        double theta_n_min = 5., double theta_n_max = 35.)
@@ -39,17 +35,7 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
     cout << "===========================================================================\n\n";
 
     TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
-    // OutPutFolder = ConfigTopDir(Ebeam); // reconfigure OutPutFolder according to working directory (ifarm or local)
     OutPutFolder = ConfigTopDir(gen_1e_events, gen_ep_events, gen_en_events, Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
-
-    /*if (EnforceMomCon)
-    {
-        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_wMomCon";
-    }
-    else
-    {
-        OutputFileNamePrefix = "lund_" + OutputFileNamePrefix + "_woMomCon";
-    }*/
 
     bool GenerateLundFiles = true;
     int DisplaySpace = 74;
@@ -110,7 +96,6 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
     DisplyText("beamType", DisplaySpace, beamType);
 
     double beamE_in_lundfiles = Ebeam; // GeV
-    // double beamE_in_lundfiles = -99; // GeV
     DisplyText("beamE_in_lundfiles", DisplaySpace, beamE_in_lundfiles);
 
     double weight = 1;
@@ -130,12 +115,11 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
 
     /* Add particles in event below */
     TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository)
+    // TODO: figure out which type of vertex (point, 1-foil, 4-foil) to use
 
     if (GenerateLundFiles)
     {
         InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
-
-        // if (nFiles > nEvents / 10000) { nFiles = nEvents / 10000; }
 
         cout << "\nGenerating lund files...\n\n";
 
