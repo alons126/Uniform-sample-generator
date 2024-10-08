@@ -16,25 +16,25 @@
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
 
-void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events,
-                                         double Ebeam = 5.98636,
-                                    //    double Ebeam = 4.02962,
-                                       //    double Ebeam = 2.07052,
-                                         TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_e_tester/",
-                                    //    TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_e_tester/",
-                                       //    TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_e_tester/",
-                                       int nFiles = 10, int nEvents = 10000,
-                                    //    int nFiles = 100, int nEvents = 10000,
-                                       double theta_e_min = 5., double theta_e_max = 40.,
-                                       double theta_p_min = 5., double theta_p_max = 45.,
-                                       double theta_n_min = 5., double theta_n_max = 35.)
+void Uniform_sample_generator_e_tester( //
+    double Ebeam = 5.98636,
+    // double Ebeam = 4.02962,
+    // double Ebeam = 2.07052,
+    TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_e_tester/",
+    // TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_e_tester/",
+    // TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_e_tester/",
+    int nFiles = 10, int nEvents = 10000,
+    // int nFiles = 100, int nEvents = 10000,
+    double theta_e_min = 5., double theta_e_max = 40.,
+    double theta_p_min = 5., double theta_p_max = 45.,
+    double theta_n_min = 5., double theta_n_max = 35.)
 {
     // -------------------------------------------------------------------------------------------------
     cout << "\n\n\n===========================================================================\n";
     cout << setw(50) << "Uniform sample generator\n";
     cout << "===========================================================================\n\n";
 
-    TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
+    TString OutputFileNamePrefix = ConfigPrefix(true, false, false, Ebeam);
     OutPutFolder = ConfigTopDir_Tester_e(Ebeam, OutPutFolder); // reconfigure OutPutFolder according to working directory (ifarm or local)
 
     bool GenerateLundFiles = true;
@@ -119,7 +119,7 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
 
     if (GenerateLundFiles)
     {
-        InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
+        InitHistograms_Tester_e(Ebeam);
 
         cout << "\nGenerating lund files...\n\n";
 
@@ -137,7 +137,7 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
 
             TString formatstring, outstring;
 
-            Generate_uniform_event_e_tester(vtx, TH1_hist_list_1e, TH2_hist_list_1e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
+            Generate_uniform_event_e_tester(vtx, TH1_hist_list_Tester_e, TH2_hist_list_Tester_e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
                                             beamE_in_lundfiles, Ebeam, weight, mass_e, theta_e_min, theta_e_max);
 
             OutFile.close();
@@ -150,36 +150,36 @@ void Uniform_sample_generator_e_tester(const bool gen_1e_events, const bool gen_
 
         int num = 0;
 
-        for (int i = 0; i < TH1_hist_list_1e.size(); i++)
+        for (int i = 0; i < TH1_hist_list_Tester_e.size(); i++)
         {
-            TH1_hist_list_1e[i]->Sumw2();
-            TH1_hist_list_1e[i]->GetXaxis()->CenterTitle();
-            TH1_hist_list_1e[i]->GetXaxis()->SetTitleSize(0.06);
-            TH1_hist_list_1e[i]->GetXaxis()->SetLabelSize(0.0425);
-            TH1_hist_list_1e[i]->GetYaxis()->SetTitle("Number of events");
-            TH1_hist_list_1e[i]->GetYaxis()->CenterTitle();
-            TH1_hist_list_1e[i]->GetYaxis()->SetTitleSize(0.06);
-            TH1_hist_list_1e[i]->GetYaxis()->SetLabelSize(0.0425);
-            plots->Add(TH1_hist_list_1e[i]);
+            TH1_hist_list_Tester_e[i]->Sumw2();
+            TH1_hist_list_Tester_e[i]->GetXaxis()->CenterTitle();
+            TH1_hist_list_Tester_e[i]->GetXaxis()->SetTitleSize(0.06);
+            TH1_hist_list_Tester_e[i]->GetXaxis()->SetLabelSize(0.0425);
+            TH1_hist_list_Tester_e[i]->GetYaxis()->SetTitle("Number of events");
+            TH1_hist_list_Tester_e[i]->GetYaxis()->CenterTitle();
+            TH1_hist_list_Tester_e[i]->GetYaxis()->SetTitleSize(0.06);
+            TH1_hist_list_Tester_e[i]->GetYaxis()->SetLabelSize(0.0425);
+            plots->Add(TH1_hist_list_Tester_e[i]);
 
-            TH1_hist_list_1e[i]->Draw();
-            string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_1e[i]->GetName() + ".png";
+            TH1_hist_list_Tester_e[i]->Draw();
+            string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH1_hist_list_Tester_e[i]->GetName() + ".png";
             c1->SaveAs(SavePath.c_str());
             ++num;
         }
 
-        for (int i = 0; i < TH2_hist_list_1e.size(); i++)
+        for (int i = 0; i < TH2_hist_list_Tester_e.size(); i++)
         {
-            TH2_hist_list_1e[i]->GetXaxis()->CenterTitle();
-            TH2_hist_list_1e[i]->GetXaxis()->SetTitleSize(0.06);
-            TH2_hist_list_1e[i]->GetXaxis()->SetLabelSize(0.0425);
-            TH2_hist_list_1e[i]->GetYaxis()->CenterTitle();
-            TH2_hist_list_1e[i]->GetYaxis()->SetTitleSize(0.06);
-            TH2_hist_list_1e[i]->GetYaxis()->SetLabelSize(0.0425);
-            plots->Add(TH2_hist_list_1e[i]);
+            TH2_hist_list_Tester_e[i]->GetXaxis()->CenterTitle();
+            TH2_hist_list_Tester_e[i]->GetXaxis()->SetTitleSize(0.06);
+            TH2_hist_list_Tester_e[i]->GetXaxis()->SetLabelSize(0.0425);
+            TH2_hist_list_Tester_e[i]->GetYaxis()->CenterTitle();
+            TH2_hist_list_Tester_e[i]->GetYaxis()->SetTitleSize(0.06);
+            TH2_hist_list_Tester_e[i]->GetYaxis()->SetLabelSize(0.0425);
+            plots->Add(TH2_hist_list_Tester_e[i]);
 
-            TH2_hist_list_1e[i]->Draw("colz");
-            string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_1e[i]->GetName() + ".png";
+            TH2_hist_list_Tester_e[i]->Draw("colz");
+            string SavePath = MonitoringPlotsPath0 + to_string(num + 1) + "_" + TH2_hist_list_Tester_e[i]->GetName() + ".png";
             c1->SaveAs(SavePath.c_str());
             ++num;
         }
