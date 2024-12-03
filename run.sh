@@ -1,7 +1,7 @@
 #!/bin/bash
 
-unset CODE_PATH
-export CODE_PATH=$(pwd)
+unset CODE_PATH_
+export CODE_PATH_=$(pwd)
 
 if [ "$CODE_PATH" != "/Users/alon/Projects/Uniform-sample-generator" ]; then
     echo "- Re-pulling repository -----------------------------------------------"
