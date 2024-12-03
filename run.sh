@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/bin/tcsh
 
-unset CODE_PATHH
-export CODE_PATHH=$(pwd)
+unsetenv CODE_PATHH
+setenv CODE_PATHH `pwd`
 
-if [ "$CODE_PATHH" != "/Users/alon/Projects/Uniform-sample-generator" ]; then
+if ("$CODE_PATHH" != "/Users/alon/Projects/Uniform-sample-generator") then
     echo "- Re-pulling repository -----------------------------------------------"
     echo ""
     git reset --hard
     git pull
     echo ""
-fi
+endif
 
 echo "- Launching code -------------------------------------------------------"
 echo ""
