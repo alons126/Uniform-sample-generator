@@ -171,13 +171,13 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
             if (gen_ep_events)
             {
-                Generate_uniform_event(vtx, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP, interactN,
+                Generate_uniform_event(OutPutFolder, vtx, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP, interactN,
                                        beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min, theta_p_max);
             }
 
             if (gen_en_events)
             {
-                Generate_uniform_event(vtx, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP, interactN,
+                Generate_uniform_event(OutPutFolder, vtx, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP, interactN,
                                        beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min, theta_n_max);
             }
 

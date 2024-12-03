@@ -46,7 +46,7 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
 
 #pragma region /* Uniform (e,e'p) and (e,e'n) events */
 
-void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH2 *> TH2_hist_list, ofstream &OutFile,
+void Generate_uniform_event(TString OutPutFolder, TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH2 *> TH2_hist_list, ofstream &OutFile,
                             TString formatstring, TString outstring, TRandom3 &ran, int N_pid, int nEvents = 10000, const int nParticles = 2, double targP = 0.,
                             double beamP = 0., int interactN = 1, int beamType = 11, double beamE_in_lundfiles = -99, double Ebeam = -99, double weight = 1,
                             double mass_e = 0.511e-3, double mass_N = 0.938272,
@@ -75,7 +75,7 @@ void Generate_uniform_event(TVector3 vtx, vector<TH1 *> TH1_hist_list, vector<TH
         /* Electron: constant Theta_e; Phi_e is the inverse of Phi_N; and constant P_e */
         TVector3 P_e_3v;
         double Theta_e = 25.;           // Constant Theta_e at Theta_e = 25 degrees
-        double Phi_e = getPhi_e(Phi_N); // Phi_e is one of {-120, -60, 0, 60, 120, 180} that is the closest to 180 degrees away from phi_N
+        double Phi_e = getPhi_e(OutPutFolder, Phi_N); // Phi_e is one of {-120, -60, 0, 60, 120, 180} that is the closest to 180 degrees away from phi_N
         double P_e = Ebeam;             // Constant P_e at P_e = Ebeam, since the electron is the trigger
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
 
