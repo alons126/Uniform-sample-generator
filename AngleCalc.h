@@ -2,6 +2,8 @@
 #include <cmath>
 #include <vector>
 
+#include "ConfigTopDir.cpp"
+
 double CalcdPhi(double dPhiTemp)
 {
     double dPhi;
@@ -23,8 +25,25 @@ double CalcdPhi(double dPhiTemp)
 }
 
 // Function to find the angle closest to 180 degrees away from phi_N
-double getPhi_e(double phi_N)
+double getPhi_e(TString OutPutFolder, double phi_N)
 {
+    double phi_e_offset; // Electron phi_e offset due to the solenoid field
+
+    string OutPutFolder0(OutPutFolder.Data());
+
+    if (findSubstring(OutPutFolder0, "2070MeV"))
+    {
+        phi_e_offset = 16.;
+    }
+    else if (findSubstring(OutPutFolder0, "4029MeV"))
+    {
+        phi_e_offset = 7.;
+    }
+    else if (findSubstring(OutPutFolder0, "5986MeV"))
+    {
+        phi_e_offset = 5.;
+    }
+
     std::vector<double> possible_angles = {-120, -60, 0, 60, 120, 180};
 
     // Calculate the target angle (180 degrees away from phi_N)
@@ -44,5 +63,6 @@ double getPhi_e(double phi_N)
         }
     }
 
-    return closest_angle;
+    return closest_angle + phi_e_offset;
+    // return closest_angle;
 }

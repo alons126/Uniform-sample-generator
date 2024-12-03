@@ -2,6 +2,9 @@
 // Created by alons on 14/08/2024.
 //
 
+#ifndef CONFIGTOPDIR_CPP
+#define CONFIGTOPDIR_CPP
+
 #include <iomanip>
 #include <string>
 
@@ -133,3 +136,5 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
         return FuncOut;
     }
 }
+
+#endif //CONFIGTOPDIR_CPP
