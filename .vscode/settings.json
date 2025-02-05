@@ -70,5 +70,8 @@
         "unordered_set": "cpp",
         "variant": "cpp",
         "algorithm": "cpp"
-    }
+    },
+    "betterFolding.foldClosingBrackets": true,
+    "betterFolding.showFoldedBrackets": true,
+    "betterFolding.chainFoldingRanges": true
 }

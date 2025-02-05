@@ -1,23 +1,17 @@
-#include <iostream>
 #include <cmath>
+#include <iostream>
 #include <vector>
 
 #include "ConfigTopDir.cpp"
 
-double CalcdPhi(double dPhiTemp)
-{
+double CalcdPhi(double dPhiTemp) {
     double dPhi;
 
-    if (dPhiTemp > 180.0)
-    {
+    if (dPhiTemp > 180.0) {
         dPhi = dPhiTemp - 360.0;
-    }
-    else if (dPhiTemp < -180.0)
-    {
+    } else if (dPhiTemp < -180.0) {
         dPhi = dPhiTemp + 360.0;
-    }
-    else
-    {
+    } else {
         dPhi = dPhiTemp;
     }
 
@@ -25,22 +19,16 @@ double CalcdPhi(double dPhiTemp)
 }
 
 // Function to find the angle closest to 180 degrees away from phi_N
-double getPhi_e(TString OutPutFolder, double phi_N)
-{
-    double phi_e_offset; // Electron phi_e offset due to the solenoid field
+double getPhi_e(TString OutPutFolder, double phi_N) {
+    double phi_e_offset = 0.;  // Electron phi_e offset due to the solenoid field
 
     string OutPutFolder0(OutPutFolder.Data());
 
-    if (findSubstring(OutPutFolder0, "2070MeV"))
-    {
+    if (findSubstring(OutPutFolder0, "2070MeV")) {
         phi_e_offset = 16.;
-    }
-    else if (findSubstring(OutPutFolder0, "4029MeV"))
-    {
+    } else if (findSubstring(OutPutFolder0, "4029MeV")) {
         phi_e_offset = 7.;
-    }
-    else if (findSubstring(OutPutFolder0, "5986MeV"))
-    {
+    } else if (findSubstring(OutPutFolder0, "5986MeV")) {
         phi_e_offset = 5.;
     }
 
@@ -53,11 +41,9 @@ double getPhi_e(TString OutPutFolder, double phi_N)
     double closest_angle = possible_angles[0];
     double min_diff = std::abs(CalcdPhi(target_angle - closest_angle));
 
-    for (double angle : possible_angles)
-    {
+    for (double angle : possible_angles) {
         double diff = std::abs(CalcdPhi(target_angle - angle));
-        if (diff < min_diff)
-        {
+        if (diff < min_diff) {
             min_diff = diff;
             closest_angle = angle;
         }
