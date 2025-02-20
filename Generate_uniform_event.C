@@ -62,8 +62,8 @@ void Generate_uniform_event(TString OutPutFolder, TVector3 vtx, vector<TH1 *> TH
         TVector3 P_N_3v;
         double Theta_N = ran.Uniform(theta_N_min, theta_N_max);  // Uniform Theta_N from theta_N_min to theta_N_max
         double Phi_N = ran.Uniform(-180., 180.);                 // Uniform Phi_N from -180 to +180
-        double P_N = ran.Uniform(0.3, Ebeam);                    // Uniform P_N from 0 to P_N = beamE
-        // double P_N = 1.;                                         // Uniform P_N from 0.3 to P_N = beamE
+        // double P_N = ran.Uniform(0.3, Ebeam);                    // Uniform P_N from 0 to P_N = beamE
+        double P_N = 1.;                                         // Uniform P_N from 0.3 to P_N = beamE
         P_N_3v.SetMagThetaPhi(P_N, Theta_N * TMath::DegToRad(), Phi_N * TMath::DegToRad());
 
         /* Electron: constant Theta_e; Phi_e is the inverse of Phi_N; and constant P_e */
