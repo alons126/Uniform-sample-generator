@@ -6,6 +6,7 @@ setenv CODE_PATH `pwd`
 if ("$CODE_PATH" != "/Users/alon/Projects/Uniform-sample-generator") then
     echo "- Re-pulling repository -----------------------------------------------"
     echo ""
+    git pull
     git reset --hard
     git pull
     echo ""
