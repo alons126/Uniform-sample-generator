@@ -21,8 +21,9 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/",
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
                               // int nFiles = 10, int nEvents = 10000,
-                              int nFiles = 2500, int nEvents = 10000,
+                              int nFiles = 500, int nEvents = 10000,
                               //   int nFiles = 1000, int nEvents = 10000,
+                              //   int nFiles = 2500, int nEvents = 10000,
                               double theta_e_min = 5., double theta_e_max = 40., double theta_p_min = 5., double theta_p_max = 45., double theta_n_min = 5.,
                               double theta_n_max = 35.) {
     // -------------------------------------------------------------------------------------------------
@@ -84,10 +85,10 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     string MonitoringPlotsPath0(MonitoringPlotsPath.Data());
     DisplyText("MonitoringPlotsPath", DisplaySpace, MonitoringPlotsPath);
 
-    TList *plots = new TList();
+    TList* plots = new TList();
     string OutputFileNamePrefix0(OutputFileNamePrefix.Data());
     string listName = OutPutFolder0 + OutputFileNamePrefix0 + "_plots.root";
-    const char *TListName = listName.c_str();
+    const char* TListName = listName.c_str();
     DisplyText("Plot list path", DisplaySpace, listName);
 
     cout << "\n";
@@ -121,10 +122,9 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     system(("mkdir -p " + MonitoringPlotsPath0).c_str());  // Make new monitoring plots folder
 
     /* Add particles in event below */
-    // string target = "1-foil";            // - vtx-test-1
-    // TVector3 vtx = randomVertex(target); // - vtx-test-1
-    // TVector3 vtx(0, 0, -3); // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - torus_plus1-test
-    TVector3 vtx(0, 0, -3);  // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - TorusSymmetric-test
+    string target = "1-foil";             // - vtx-test-1
+    TVector3 vtx = randomVertex(target);  // - vtx-test-1
+    // TVector3 vtx(0, 0, -3);  // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - TorusSymmetric-test
     // TODO: figure out which type of vertex (point, 1-foil, 4-foil) to use
 
     if (GenerateLundFiles) {
@@ -162,14 +162,14 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
         cout << "\nPlotting and saving monitoring plots\n\n";
 
-        TCanvas *c1 = new TCanvas("canvas", "canvas", 1000, 750);  // normal res
+        TCanvas* c1 = new TCanvas("canvas", "canvas", 1000, 750);  // normal res
         c1->SetGrid(), c1->SetBottomMargin(0.14), c1->SetLeftMargin(0.16), c1->SetRightMargin(0.12), c1->cd();
 
         int num = 0;
 
         if (gen_1e_events) {
             string pdfFile_1e_0 = MonitoringPlotsPath0 + "/Uniform_1e_plots_" + ConfigBeamE(Ebeam) + ".pdf";
-            const char *pdfFile_1e = pdfFile_1e_0.c_str();
+            const char* pdfFile_1e = pdfFile_1e_0.c_str();
             cout << pdfFile_1e_0 << "\n\n";
             cout << pdfFile_1e << "\n\n";
             c1->Print(Form("%s[", pdfFile_1e));  // Open the PDF file
@@ -221,7 +221,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
         if (gen_ep_events) {
             string pdfFile_ep_0 = MonitoringPlotsPath0 + "/Uniform_ep_plots_" + ConfigBeamE(Ebeam) + ".pdf";
-            const char *pdfFile_ep = pdfFile_ep_0.c_str();
+            const char* pdfFile_ep = pdfFile_ep_0.c_str();
             cout << pdfFile_ep_0 << "\n\n";
             cout << pdfFile_ep << "\n\n";
             c1->Print(Form("%s[", pdfFile_ep));  // Open the PDF file
@@ -273,7 +273,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
         if (gen_en_events) {
             string pdfFile_en_0 = MonitoringPlotsPath0 + "/Uniform_en_plots_" + ConfigBeamE(Ebeam) + ".pdf";
-            const char *pdfFile_en = pdfFile_en_0.c_str();
+            const char* pdfFile_en = pdfFile_en_0.c_str();
             cout << pdfFile_en_0 << "\n\n";
             cout << pdfFile_en << "\n\n";
             c1->Print(Form("%s[", pdfFile_en));  // Open the PDF file
@@ -323,7 +323,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
             TH2_hist_list_en.clear();
         }
 
-        TFile *plots_fout = new TFile(TListName, "recreate");
+        TFile* plots_fout = new TFile(TListName, "recreate");
         plots_fout->cd();
         plots->Write();
         plots_fout->Write();
