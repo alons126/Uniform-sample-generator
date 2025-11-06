@@ -73,14 +73,14 @@ TString ConfigTopDir(TString OutPutFolder)
 
     if (!findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator"))
     {
-        cout << "Current directory is '" << CurrentDir << endl;
-        cout << "OutPut folder kept unchanged." << endl;
+        cout << "\033[33m" << "Current directory is \033[0m" << CurrentDir << endl;
+        cout << "\033[33m" << "OutPut folder kept unchanged.\033[0m" << endl;
         return OutPutFolder;
     }
     else
     {
-        cout << "Current directory is '" << CurrentDir << endl;
-        cout << "OutPut folder changed to '" << CurrentDir << "/OutPut/" << "'" << endl;
+        cout << "\033[33m" << "Current directory is \033[0m" << CurrentDir << endl;
+        cout << "\033[33m" << "OutPut folder changed to \033[0m'" << CurrentDir << "/OutPut/" << "'" << endl;
         return CurrentDir + "/OutPut/";
     }
 }
@@ -92,8 +92,8 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
 
     if (!findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator"))
     {
-        cout << "Current directory is '" << CurrentDir << endl;
-        cout << "OutPut folder kept unchanged." << endl;
+        cout << "\033[33m" << "Current directory is \033[0m" << CurrentDir << endl;
+        cout << "\033[33m" << "OutPut folder kept unchanged.\033[0m" << endl;
 
         string OutPutFolder0 = OutPutFolder.Data();
         string OutPutFolder1 = OutPutFolder0.substr(0, OutPutFolder0.find_last_of('/'));
@@ -117,8 +117,8 @@ TString ConfigTopDir(const bool gen_1e_events, const bool gen_ep_events, const b
     {
         string OutTopDir = "/Users/alon/Downloads/" + ConfigBeamE(Ebeam);
 
-        cout << "Current directory is '" << CurrentDir << endl;
-        cout << "OutPut folder changed to '" << CurrentDir << "/OutPut/" << "'" << endl;
+        cout << "\033[33m" << "Current directory is \033[0m" << CurrentDir << endl;
+        cout << "\033[33m" << "OutPut folder changed to \033[0m'" << CurrentDir << "/OutPut/" << "'" << endl;
 
         if (gen_1e_events)
         {
