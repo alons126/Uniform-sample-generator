@@ -17,9 +17,9 @@
 void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events, const bool gen_en_events, double Ebeam = 5.98636,
                               //   double Ebeam = 4.02962,
                               //   double Ebeam = 2.07052,
-                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut/",
-                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut/",
-                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut/",
+                              TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut/",
+                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV/OutPut/",
+                              //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut/",
                               // int nFiles = 10, int nEvents = 10000,
                               int nFiles = 500, int nEvents = 10000,
                               //   int nFiles = 1000, int nEvents = 10000,
@@ -27,19 +27,19 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                               double theta_e_min = 5., double theta_e_max = 40., double theta_p_min = 5., double theta_p_max = 45., double theta_n_min = 5.,
                               double theta_n_max = 35.) {
     // -------------------------------------------------------------------------------------------------
-    cout << "\n\n\n===========================================================================\n";
-    cout << setw(50) << "Uniform sample generator\n";
-    cout << "===========================================================================\n\n";
+    cout << "\033[33m" <<"\n\n\n===========================================================================\n\033[0m";
+    cout << "\033[33m" <<setw(50) << "Uniform sample generator\n\033[0m";
+    cout << "\033[33m" <<"===========================================================================\n\n\033[0m";
 
     if (gen_1e_events && gen_ep_events && gen_en_events) {
-        cout << "Uniform_sample_generator: change gen_1e_events or gen_ep_events or gen_en_events!... Exiting" << endl, exit(0);
+        cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_1e_events or gen_ep_events or gen_en_events!... Exiting" << endl, exit(0);
     }
 
-    if (gen_1e_events && gen_ep_events) { cout << "Uniform_sample_generator: change gen_1e_events or gen_ep_events!... Exiting" << endl, exit(0); }
+    if (gen_1e_events && gen_ep_events) { cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_1e_events or gen_ep_events!... Exiting" << endl, exit(0); }
 
-    if (gen_1e_events && gen_en_events) { cout << "Uniform_sample_generator: change gen_1e_events or gen_en_events!... Exiting" << endl, exit(0); }
+    if (gen_1e_events && gen_en_events) { cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_1e_events or gen_en_events!... Exiting" << endl, exit(0); }
 
-    if (gen_en_events && gen_ep_events) { cout << "Uniform_sample_generator: change gen_en_events or gen_ep_events!... Exiting" << endl, exit(0); }
+    if (gen_en_events && gen_ep_events) { cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_en_events or gen_ep_events!... Exiting" << endl, exit(0); }
 
     TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
     OutPutFolder = ConfigTopDir(gen_1e_events, gen_ep_events, gen_en_events, Ebeam, OutPutFolder);  // reconfigure OutPutFolder according to working directory (ifarm or local)
@@ -109,7 +109,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     double weight = 1;
     DisplyText("weight", DisplaySpace, weight);
 
-    cout << "\nCreating plot directories...\n";
+    cout << "\033[33m" <<"\nCreating plot directories...\n\033[0m";
 
     system(("rm -r " + OutPutFolder0).c_str());     // Delete old output folder
     system(("mkdir -p " + OutPutFolder0).c_str());  // Make new output folder
@@ -130,15 +130,15 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     if (GenerateLundFiles) {
         InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
 
-        cout << "\nGenerating lund files...\n\n";
+        cout << "\033[33m" <<"\nGenerating lund files...\n\n\033[0m";
 
         for (int iFiles = 1; iFiles < nFiles + 1; iFiles++) {
             TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
-            cout << "OutFileName: " << std::setw(49) << OutFileName << "\n";
+            cout << "\033[33m" <<"OutFileName:\033[0m " << std::setw(49) << OutFileName << "\n";
 
             ofstream OutFile;
             OutFile.open(OutFileName);
-            if (!OutFile.is_open()) { cout << "Output file cannot be created" << endl; }
+            if (!OutFile.is_open()) { cout << "\033[33m" <<"Output file cannot be created\033[0m" << endl; }
 
             TString formatstring, outstring;
 
@@ -160,7 +160,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
             OutFile.close();
         }
 
-        cout << "\nPlotting and saving monitoring plots\n\n";
+        cout << "\033[33m" <<"\nPlotting and saving monitoring plots\n\n\033[0m";
 
         TCanvas* c1 = new TCanvas("canvas", "canvas", 1000, 750);  // normal res
         c1->SetGrid(), c1->SetBottomMargin(0.14), c1->SetLeftMargin(0.16), c1->SetRightMargin(0.12), c1->cd();
@@ -329,6 +329,6 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
         plots_fout->Write();
         plots_fout->Close();
     } else {
-        cout << "\nLund files generation disabled.\n";
+        cout << "\033[33m" <<"\nLund files generation disabled.\n\033[0m";
     }
 }

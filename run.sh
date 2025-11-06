@@ -4,7 +4,7 @@ unsetenv CODE_PATH
 setenv CODE_PATH `pwd`
 
 if ("$CODE_PATH" != "/Users/alon/Projects/Uniform-sample-generator") then
-    echo "- Re-pulling repository -----------------------------------------------"
+    echo "\033[35m- Re-pulling repository -----------------------------------------------\033[0m"
     echo ""
     git pull
     git reset --hard
@@ -12,8 +12,8 @@ if ("$CODE_PATH" != "/Users/alon/Projects/Uniform-sample-generator") then
     echo ""
 endif
 
-echo "- Launching code -------------------------------------------------------"
+echo "\033[35m- Launching code -------------------------------------------------------\033[0m"
 echo ""
 root ./CodeRun.cpp -l -q -b
 echo ""
-echo "- Operation finished --------------------------------------------------"
+echo "\033[35m- Operation finished --------------------------------------------------\033[0m"
