@@ -21,9 +21,10 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV/OutPut/",
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut/",
                               // int nFiles = 10, int nEvents = 10000,
-                              int nFiles = 500, int nEvents = 10000,
+                            //   int nFiles = 500, int nEvents = 10000,
                               //   int nFiles = 1000, int nEvents = 10000,
                               //   int nFiles = 2500, int nEvents = 10000,
+                                int nFiles = 25000, int nEvents = 10000,
                               double theta_e_min = 5., double theta_e_max = 40., double theta_p_min = 5., double theta_p_max = 45., double theta_n_min = 5.,
                               double theta_n_max = 35.) {
     // -------------------------------------------------------------------------------------------------
@@ -122,10 +123,9 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     system(("mkdir -p " + MonitoringPlotsPath0).c_str());  // Make new monitoring plots folder
 
     /* Add particles in event below */
-    string target = "1-foil";             // - vtx-test-1
-    TVector3 vtx = randomVertex(target);  // - vtx-test-1
-    // TVector3 vtx(0, 0, -3);  // center of hallB in GEMC in cm (accordig to the targets.h file from the RG-M repository) - TorusSymmetric-test
-    // TODO: figure out which type of vertex (point, 1-foil, 4-foil) to use
+    string target = "1-foil-small";
+    // string target = "1-foil";
+    TVector3 vtx = randomVertex(target);
 
     if (GenerateLundFiles) {
         InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
