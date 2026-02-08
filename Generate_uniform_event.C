@@ -16,11 +16,9 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
     while (i < nEvents) {
         TVector3 temp_vtx_e = randomVertex(target);
 
-        /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events
-           LUND header for the event: */
+        /* Create nEvents uniform (e,e') events. LUND header for the event: */
         formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
         outstring = Form(formatstring, 1, 1 /* A */, 1 /* Z */, targP, beamP, beamType, beamE_in_lundfiles, interactN, i, weight);
-        // OutFile << outstring;
 
         /* Electron */
         TVector3 P_e_3v;
@@ -63,7 +61,7 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
         TVector3 temp_vtx_e = randomVertex(target);
         TVector3 temp_vtx_N = randomVertex(target);
 
-        /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events LUND header for the event: */
+        /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events. LUND header for the event: */
         formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
         outstring = Form(formatstring, nParticles, 1 /* A */, 1 /* Z */, targP, beamP, beamType, beamE_in_lundfiles, interactN, i, weight);
         // OutFile << outstring;
