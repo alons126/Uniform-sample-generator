@@ -59,7 +59,6 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
 
     while (i < nEvents) {
         TVector3 temp_vtx_e = randomVertex(target);
-        TVector3 temp_vtx_N = randomVertex(target);
 
         /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events. LUND header for the event: */
         formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
@@ -89,12 +88,11 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
         // // OutFile << "\n";
 
         if (N_pid == 2212) {
-            // TODO: figure out what vtx should be for the (e,e'p) events. For now, just use the same vtx for both the electron and the proton, which is temp_vtx_e.
+            TVector3 temp_vtx_N = tmp_vtx_e;  // Set the nucleon vertex to be the same as the electron vertex as they come from the same interaction point.
+
             OutFile << outstring;
             OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
-            OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_e);
-            // OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_N);
-            // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_N);
+            OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_N);
 
             hTheta_e_ep->Fill(P_e_3v.Theta() * TMath::RadToDeg());
             hPhi_e_ep->Fill(P_e_3v.Phi() * TMath::RadToDeg());
@@ -132,20 +130,19 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
             hPhi_e_VS_Theta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
             hPhi_e_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
         } else if (N_pid == 2112) {
-            // TODO: figure out what vtx should be for the (e,e'n) events. For now, just use the same vtx for both the electron and the neutron, which is temp_vtx_e.
+            TVector3 temp_vtx_N = tmp_vtx_e;  // Set the nucleon vertex to be the same as the electron vertex as they come from the same interaction point.
+
             OutFile << outstring;
             OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
-            OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_e);
-            // OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_N);
-            // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_N);
+            OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_N);
 
             hTheta_e_en->Fill(P_e_3v.Theta() * TMath::RadToDeg());
             hPhi_e_en->Fill(P_e_3v.Phi() * TMath::RadToDeg());
             hP_e_en->Fill(P_e_3v.Mag());
 
-            hVx_e_ep->Fill(temp_vtx_e.X());
-            hVy_e_ep->Fill(temp_vtx_e.Y());
-            hVz_e_ep->Fill(temp_vtx_e.Z());
+            hVx_e_en->Fill(temp_vtx_e.X());
+            hVy_e_en->Fill(temp_vtx_e.Y());
+            hVz_e_en->Fill(temp_vtx_e.Z());
 
             hTheta_e_VS_Phi_e_en->Fill(P_e_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
             hTheta_e_VS_P_e_en->Fill(P_e_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
