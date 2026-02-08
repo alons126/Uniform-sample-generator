@@ -9,7 +9,7 @@
 #include "Histograms.cpp"
 #include "TList.h"
 #include "TObjString.h"
-#include "targets.h"
+// #include "targets.h"
 
 /* root CodeRun.cpp -q -b */
 /* LUND format: https://gemc.jlab.org/gemc/html/documentation/generator/lund.html */
@@ -126,7 +126,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     string target = "Ar";
     // string target = "1-foil-small";
     // string target = "1-foil";
-    TVector3 vtx = randomVertex(target);
+    TVector3 vtx;
+    // TVector3 vtx = randomVertex(target);
 
     if (GenerateLundFiles) {
         InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
