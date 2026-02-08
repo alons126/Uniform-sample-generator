@@ -21,7 +21,7 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
         // OutFile << outstring;
 
         TVector3 vtx_temp = randomVertex(target);
-        cout << "\033[33m" << "vtx_temp.Z(): " << vtx_temp.Z() << "%\033[0m" << flush;
+        cout << "vtx_temp.Z(): " << vtx_temp.Z() << "\n";
 
         /* Electron */
         TVector3 P_e_3v;
