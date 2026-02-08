@@ -123,7 +123,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     system(("mkdir -p " + MonitoringPlotsPath0).c_str());  // Make new monitoring plots folder
 
     /* Add particles in event below */
-    string target = "1-foil-small";
+    string target = "Ar";
+    // string target = "1-foil-small";
     // string target = "1-foil";
     TVector3 vtx = randomVertex(target);
 
