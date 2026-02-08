@@ -10,9 +10,10 @@ void CodeRun() {
 
     // Uniform_sample_generator(true, false, false, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut/");
     // Uniform_sample_generator(true, false, false, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV_devGEMC_rgm_fall2021_C_S/OutPut/");
-    Uniform_sample_generator(true, false, false, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/");
+    // Uniform_sample_generator(true, false, false, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/");
     // Uniform_sample_generator(false, true, false, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut/");
     // Uniform_sample_generator(false, false, true, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut/");
+    Uniform_sample_generator(false, false, true, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/");
     // Uniform_sample_generator(false, false, true, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut/");
     // Uniform_sample_generator(false, false, true, 2.07052, "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV_target_zpos_test/OutPut/");
 
