@@ -14,6 +14,8 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
     int i = 0;
 
     while (i < nEvents) {
+        TVector3 temp_vtx_e = randomVertex(target);
+
         /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events
            LUND header for the event: */
         formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
@@ -27,7 +29,7 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
         double P_e = ran.Uniform(0, Ebeam);                      // Uniform P_e from 0 to P_e = beamE
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
         OutFile << outstring;
-        OutFile << AddParticle(1, 11, P_e_3v, mass_e, randomVertex(target));
+        OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
         // OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
 
         hTheta_e_1e->Fill(P_e_3v.Theta() * TMath::RadToDeg());
@@ -37,6 +39,10 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
         hTheta_e_VS_Phi_e_1e->Fill(P_e_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
         hTheta_e_VS_P_e_1e->Fill(P_e_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
         hPhi_e_VS_P_e_1e->Fill(P_e_3v.Mag(), P_e_3v.Phi() * TMath::RadToDeg());
+
+        hVx_e_1e->Fill(temp_vtx_e.X());
+        hVy_e_1e->Fill(temp_vtx_e.Y());
+        hVz_e_1e->Fill(temp_vtx_e.Z());
 
         ++i;
     }
@@ -54,8 +60,10 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
     int i = 0;
 
     while (i < nEvents) {
-        /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events
-           LUND header for the event: */
+        TVector3 temp_vtx_e = randomVertex(target);
+        TVector3 temp_vtx_N = randomVertex(target);
+
+        /* Create nEvents uniform (e,e'p) events and nEvents uniform (e,e'n) events LUND header for the event: */
         formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
         outstring = Form(formatstring, nParticles, 1 /* A */, 1 /* Z */, targP, beamP, beamType, beamE_in_lundfiles, interactN, i, weight);
         // OutFile << outstring;
@@ -75,17 +83,28 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
         double P_e = Ebeam;                            // Constant P_e at P_e = Ebeam, since the electron is the trigger
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
 
-        OutFile << outstring;
-        OutFile << AddParticle(1, 11, P_e_3v, mass_e, randomVertex(target));
-        OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, randomVertex(target));
-        // OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
-        // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, vtx);
-        // OutFile << "\n";
+        // OutFile << outstring;
+        // OutFile << AddParticle(1, 11, P_e_3v, mass_e, randomVertex(target));
+        // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, randomVertex(target));
+        // // OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
+        // // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, vtx);
+        // // OutFile << "\n";
 
         if (N_pid == 2212) {
+            // TODO: figure out what vtx should be for the (e,e'p) events. For now, just use the same vtx for both the electron and the proton, which is temp_vtx_e.
+            OutFile << outstring;
+            OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
+            OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_e);
+            // OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_N);
+            // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_N);
+
             hTheta_e_ep->Fill(P_e_3v.Theta() * TMath::RadToDeg());
             hPhi_e_ep->Fill(P_e_3v.Phi() * TMath::RadToDeg());
             hP_e_ep->Fill(P_e_3v.Mag());
+
+            hVx_e_ep->Fill(temp_vtx_e.X());
+            hVy_e_ep->Fill(temp_vtx_e.Y());
+            hVz_e_ep->Fill(temp_vtx_e.Z());
 
             hTheta_e_VS_Phi_e_ep->Fill(P_e_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
             hTheta_e_VS_P_e_ep->Fill(P_e_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
@@ -94,6 +113,10 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
             hTheta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg());
             hPhi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg());
             hP_p_ep->Fill(P_N_3v.Mag());
+
+            hVx_p_ep->Fill(temp_vtx_N.X());
+            hVy_p_ep->Fill(temp_vtx_N.Y());
+            hVz_p_ep->Fill(temp_vtx_N.Z());
 
             hTheta_p_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_N_3v.Theta() * TMath::RadToDeg());
             hTheta_p_VS_P_p_ep->Fill(P_N_3v.Mag(), P_N_3v.Theta() * TMath::RadToDeg());
@@ -111,9 +134,20 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
             hPhi_e_VS_Theta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
             hPhi_e_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
         } else if (N_pid == 2112) {
+            // TODO: figure out what vtx should be for the (e,e'n) events. For now, just use the same vtx for both the electron and the neutron, which is temp_vtx_e.
+            OutFile << outstring;
+            OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
+            OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_e);
+            // OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_N);
+            // OutFile << AddParticle(2, N_pid, P_N_3v, mass_N, temp_vtx_N);
+
             hTheta_e_en->Fill(P_e_3v.Theta() * TMath::RadToDeg());
             hPhi_e_en->Fill(P_e_3v.Phi() * TMath::RadToDeg());
             hP_e_en->Fill(P_e_3v.Mag());
+
+            hVx_e_ep->Fill(temp_vtx_e.X());
+            hVy_e_ep->Fill(temp_vtx_e.Y());
+            hVz_e_ep->Fill(temp_vtx_e.Z());
 
             hTheta_e_VS_Phi_e_en->Fill(P_e_3v.Phi() * TMath::RadToDeg(), P_e_3v.Theta() * TMath::RadToDeg());
             hTheta_e_VS_P_e_en->Fill(P_e_3v.Mag(), P_e_3v.Theta() * TMath::RadToDeg());
@@ -122,6 +156,10 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
             hTheta_n_en->Fill(P_N_3v.Theta() * TMath::RadToDeg());
             hPhi_n_en->Fill(P_N_3v.Phi() * TMath::RadToDeg());
             hP_n_en->Fill(P_N_3v.Mag());
+
+            hVx_n_en->Fill(temp_vtx_N.X());
+            hVy_n_en->Fill(temp_vtx_N.Y());
+            hVz_n_en->Fill(temp_vtx_N.Z());
 
             hTheta_n_VS_Phi_n_en->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_N_3v.Theta() * TMath::RadToDeg());
             hTheta_n_VS_P_n_en->Fill(P_N_3v.Mag(), P_N_3v.Theta() * TMath::RadToDeg());

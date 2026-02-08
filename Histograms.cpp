@@ -40,6 +40,15 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
         hP_e_1e = new TH1D("P_e_1e", "P_{e} in (e,e') sample;P_{e} [GeV]", 100, 0, Ebeam * 1.1);
         TH1_hist_list_1e.push_back(hP_e_1e);
 
+        hVx_e_1e = new TH1D("Vx_e_1e", "V_{e,x} of e in (e,e') sample;V_{e,x} [cm]", 100, -5, 5);
+        TH1_hist_list_1e.push_back(hVx_e_1e);
+
+        hVy_e_1e = new TH1D("Vy_e_1e", "V_{e,y} of e in (e,e') sample;V_{e,y} [cm]", 100, -5, 5);
+        TH1_hist_list_1e.push_back(hVy_e_1e);
+
+        hVz_e_1e = new TH1D("Vz_e_1e", "V_{e,z} of e in (e,e') sample;V_{e,z} [cm]", 100, -5, 5);
+        TH1_hist_list_1e.push_back(hVz_e_1e);
+
         hTheta_e_VS_Phi_e_1e = new TH2D("Theta_e_VS_Phi_e_1e", "#theta_{e} vs. #phi_{e} in (e,e') sample;#phi_{e} [#circ];#theta_{e} [#circ]", 100, -180, 180, 100, 0, 50);
         TH2_hist_list_1e.push_back(hTheta_e_VS_Phi_e_1e);
 
@@ -62,6 +71,15 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
         hP_e_ep = new TH1D("P_e_ep", "P_{e} in (e,e'p) sample;P_{e} [GeV]", 100, 0, Ebeam * 1.1);
         TH1_hist_list_ep.push_back(hP_e_ep);
 
+        hVx_e_ep = new TH1D("Vx_e_ep", "V_{e,x} of e in (e,e'p) sample;V_{e,x} [cm]", 100, -5, 5);
+        TH1_hist_list_ep.push_back(hVx_e_ep);
+
+        hVy_e_ep = new TH1D("Vy_e_ep", "V_{e,y} of e in (e,e'p) sample;V_{e,y} [cm]", 100, -5, 5);
+        TH1_hist_list_ep.push_back(hVy_e_ep);
+
+        hVz_e_ep = new TH1D("Vz_e_ep", "V_{e,z} of e in (e,e'p) sample;V_{e,z} [cm]", 100, -5, 5);
+        TH1_hist_list_ep.push_back(hVz_e_ep);
+
         hTheta_e_VS_Phi_e_ep = new TH2D("Theta_e_VS_Phi_e_ep", "#theta_{e} vs. #phi_{e} in (e,e'p) sample;#phi_{e} [#circ];#theta_{e} [#circ]", 100, -180, 180, 100, 0, 50);
         TH2_hist_list_ep.push_back(hTheta_e_VS_Phi_e_ep);
 
@@ -79,6 +97,15 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
 
         hP_p_ep = new TH1D("P_p_ep", "P_{p} in (e,e'p) sample;P_{p} [GeV]", 100, 0, Ebeam * 1.1);
         TH1_hist_list_ep.push_back(hP_p_ep);
+
+        hVx_p_ep = new TH1D("Vx_p_ep", "V_{p,x} of p in (e,e'p) sample;V_{p,x} [cm]", 100, -5, 5);
+        TH1_hist_list_ep.push_back(hVx_p_ep);
+
+        hVy_p_ep = new TH1D("Vy_p_ep", "V_{p,y} of p in (e,e'p) sample;V_{p,y} [cm]", 100, -5, 5);
+        TH1_hist_list_ep.push_back(hVy_p_ep);
+
+        hVz_p_ep = new TH1D("Vz_p_ep", "V_{p,z} of p in (e,e'p) sample;V_{p,z} [cm]", 100, -5, 5);
+        TH1_hist_list_ep.push_back(hVz_p_ep);
 
         hTheta_p_VS_Phi_p_ep = new TH2D("Theta_p_VS_Phi_p_ep", "#theta_{p} vs. #phi_{p} in (e,e'p) sample;#phi_{p} [#circ];#theta_{p} [#circ]", 100, -180, 180, 100, 0, 50);
         TH2_hist_list_ep.push_back(hTheta_p_VS_Phi_p_ep);
@@ -129,6 +156,15 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
         hP_e_en = new TH1D("P_e_en", "P_{e} in (e,e'n) sample;P_{e} [GeV]", 100, 0, Ebeam * 1.1);
         TH1_hist_list_en.push_back(hP_e_en);
 
+        hVx_e_en = new TH1D("Vx_e_en", "V_{e,x} of e in (e,e'n) sample;V_{e,x} [cm]", 100, -5, 5);
+        TH1_hist_list_en.push_back(hVx_e_en);
+
+        hVy_e_en = new TH1D("Vy_e_en", "V_{e,y} of e in (e,e'n) sample;V_{e,y} [cm]", 100, -5, 5);
+        TH1_hist_list_en.push_back(hVy_e_en);
+
+        hVz_e_en = new TH1D("Vz_e_en", "V_{e,z} of e in (e,e'n) sample;V_{e,z} [cm]", 100, -5, 5);
+        TH1_hist_list_en.push_back(hVz_e_en);
+
         hTheta_e_VS_Phi_e_en = new TH2D("Theta_e_VS_Phi_e_en", "#theta_{e} vs. #phi_{e} in (e,e'n) sample;#phi_{e} [#circ];#theta_{e} [#circ]", 100, -180, 180, 100, 0, 50);
         TH2_hist_list_en.push_back(hTheta_e_VS_Phi_e_en);
 
@@ -146,6 +182,15 @@ void InitHistograms(const bool gen_1e_events, const bool gen_ep_events, const bo
 
         hP_n_en = new TH1D("P_n_en", "P_{n} in (e,e'n) sample;P_{n} [GeV]", 100, 0, Ebeam * 1.1);
         TH1_hist_list_en.push_back(hP_n_en);
+
+        hVx_n_en = new TH1D("Vx_n_en", "V_{n,x} of n in (e,e'n) sample;V_{n,x} [cm]", 100, -5, 5);
+        TH1_hist_list_en.push_back(hVx_n_en);
+
+        hVy_n_en = new TH1D("Vy_n_en", "V_{n,y} of n in (e,e'n) sample;V_{n,y} [cm]", 100, -5, 5);
+        TH1_hist_list_en.push_back(hVy_n_en);
+
+        hVz_n_en = new TH1D("Vz_n_en", "V_{n,z} of n in (e,e'n) sample;V_{n,z} [cm]", 100, -5, 5);
+        TH1_hist_list_en.push_back(hVz_n_en);
 
         hTheta_n_VS_Phi_n_en = new TH2D("Theta_n_VS_Phi_n_en", "#theta_{n} vs. #phi_{n} in (e,e'n) sample;#phi_{n} [#circ];#theta_{n} [#circ]", 100, -180, 180, 100, 0, 50);
         TH2_hist_list_en.push_back(hTheta_n_VS_Phi_n_en);
