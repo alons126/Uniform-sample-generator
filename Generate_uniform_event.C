@@ -20,9 +20,6 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
         outstring = Form(formatstring, 1, 1 /* A */, 1 /* Z */, targP, beamP, beamType, beamE_in_lundfiles, interactN, i, weight);
         // OutFile << outstring;
 
-        TVector3 vtx_temp = randomVertex(target);
-        cout << "vtx_temp.Z(): " << vtx_temp.Z() << "\n";
-
         /* Electron */
         TVector3 P_e_3v;
         double Theta_e = ran.Uniform(theta_e_min, theta_e_max);  // Uniform Theta_e from theta_e_min to theta_e_max
@@ -30,8 +27,7 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
         double P_e = ran.Uniform(0, Ebeam);                      // Uniform P_e from 0 to P_e = beamE
         P_e_3v.SetMagThetaPhi(P_e, Theta_e * TMath::DegToRad(), Phi_e * TMath::DegToRad());
         OutFile << outstring;
-        OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx_temp);
-        // OutFile << AddParticle(1, 11, P_e_3v, mass_e, randomVertex(target));
+        OutFile << AddParticle(1, 11, P_e_3v, mass_e, randomVertex(target));
         // OutFile << AddParticle(1, 11, P_e_3v, mass_e, vtx);
 
         hTheta_e_1e->Fill(P_e_3v.Theta() * TMath::RadToDeg());
