@@ -88,7 +88,7 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
         // // OutFile << "\n";
 
         if (N_pid == 2212) {
-            TVector3 temp_vtx_N = tmp_vtx_e;  // Set the nucleon vertex to be the same as the electron vertex as they come from the same interaction point.
+            TVector3 temp_vtx_N = temp_vtx_e;  // Set the nucleon vertex to be the same as the electron vertex as they come from the same interaction point.
 
             OutFile << outstring;
             OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
@@ -130,7 +130,7 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
             hPhi_e_VS_Theta_p_ep->Fill(P_N_3v.Theta() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
             hPhi_e_VS_Phi_p_ep->Fill(P_N_3v.Phi() * TMath::RadToDeg(), P_e_3v.Phi() * TMath::RadToDeg());
         } else if (N_pid == 2112) {
-            TVector3 temp_vtx_N = tmp_vtx_e;  // Set the nucleon vertex to be the same as the electron vertex as they come from the same interaction point.
+            TVector3 temp_vtx_N = temp_vtx_e;  // Set the nucleon vertex to be the same as the electron vertex as they come from the same interaction point.
 
             OutFile << outstring;
             OutFile << AddParticle(1, 11, P_e_3v, mass_e, temp_vtx_e);
