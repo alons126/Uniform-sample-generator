@@ -38,8 +38,8 @@ void CodeRun() {
     // ========================================================================================
     // Uniform_sample_generator(false, false, true, 2.07052, baseDir + "2070MeV/OutPut/");
     // Uniform_sample_generator(false, false, true, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/");
-    Uniform_sample_generator(false, false, true, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S/OutPut/");
-    // Uniform_sample_generator(false, false, true, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S_ConstPn/OutPut/");
+    // Uniform_sample_generator(false, false, true, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S/OutPut/");
+    Uniform_sample_generator(false, false, true, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S_ConstPn/OutPut/");
 
     // ========================================================================================
     // Uniform 4029MeV samples
