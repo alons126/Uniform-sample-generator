@@ -21,18 +21,18 @@ void CodeRun() {
     // Uniform 2070MeV samples
     // ========================================================================================
 
-    // Uniform (e,e') samples
-    // ========================================================================================
-    // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV/OutPut/");
-    // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/", 4000, 25000);
-    // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_C_S/OutPut/");
-    Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S/OutPut/");
-    // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/");
-
-    // // Uniform (e,e'p) samples
+    // // Uniform (e,e') samples
     // // ========================================================================================
-    // // Uniform_sample_generator(false, true, false, 2.07052, baseDir + "2070MeV/OutPut/");
-    // Uniform_sample_generator(false, true, false, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S/OutPut/");
+    // // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV/OutPut/");
+    // // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/", 4000, 25000);
+    // // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_C_S/OutPut/");
+    // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S/OutPut/");
+    // // Uniform_sample_generator(true, false, false, 2.07052, baseDir + "2070MeV_devGEMC_rgm_fall2021_Ar/OutPut/");
+
+    // Uniform (e,e'p) samples
+    // ========================================================================================
+    // Uniform_sample_generator(false, true, false, 2.07052, baseDir + "2070MeV/OutPut/");
+    Uniform_sample_generator(false, true, false, 2.07052, baseDir + "2070MeV_GEMC5.14_rgm_fall2021_C_S/OutPut/");
 
     // // Uniform (e,e'n) samples
     // // ========================================================================================
