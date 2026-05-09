@@ -17,7 +17,7 @@ void Generate_uniform_event(const string &target, vector<TH1 *> TH1_hist_list, v
         TVector3 temp_vtx_e = randomVertex(target);
 
         /* Create nEvents uniform (e,e') events. LUND header for the event: */
-        formatstring = "%i \t %i \t %i \t %.3f \t %.3f \t %i \t %.1f \t %i \t %i \t %.3f \n";
+        formatstring = "%i \t %i \t %i \t %f \t %f \t %i \t %f \t %i \t %d \t %.2f \n";
         outstring = Form(formatstring, 1, 1 /* A */, 1 /* Z */, targP, beamP, beamType, beamE_in_lundfiles, interactN, i, weight);
 
         /* Electron */
@@ -69,8 +69,8 @@ void Generate_uniform_event(TString OutPutFolder, const string &target, vector<T
         TVector3 P_N_3v;
         double Theta_N = ran.Uniform(theta_N_min, theta_N_max);  // Uniform Theta_N from theta_N_min to theta_N_max
         double Phi_N = ran.Uniform(-180., 180.);                 // Uniform Phi_N from -180 to +180
-        // double P_N = ran.Uniform(0.3, Ebeam);                    // Uniform P_N from 0 to P_N = beamE
-        double P_N = 1.;  // Uniform P_N from 0.3 to P_N = beamE
+        double P_N = ran.Uniform(0.3, Ebeam);                    // Uniform P_N from 0 to P_N = beamE
+        // double P_N = 1.;  // Uniform P_N from 0.3 to P_N = beamE
         P_N_3v.SetMagThetaPhi(P_N, Theta_N * TMath::DegToRad(), Phi_N * TMath::DegToRad());
 
         /* Electron: constant Theta_e; Phi_e is the inverse of Phi_N; and constant P_e */

@@ -20,33 +20,37 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
                               TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut/",
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV/OutPut/",
                               //   TString OutPutFolder = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut/",
-                              // int nFiles = 10, int nEvents = 10000,
-                            //   int nFiles = 500, int nEvents = 10000,
-                              //   int nFiles = 1000, int nEvents = 10000,
-                              //   int nFiles = 2500, int nEvents = 10000,
-                                int nFiles = 25000, int nEvents = 10000,
+                              // int nFiles = 10, int nEvents = 10000, //
+                              // int nFiles = 500, int nEvents = 10000, //
+                              // int nFiles = 1000, int nEvents = 10000, //
+                              // int nFiles = 2500, int nEvents = 10000, //
+                              int nFiles = 5000, int nEvents = 10000,  //
+                              //   int nFiles = 10000, int nEvents = 10000, //
+                              // int nFiles = 25000, int nEvents = 10000, //
                               double theta_e_min = 5., double theta_e_max = 40., double theta_p_min = 5., double theta_p_max = 45., double theta_n_min = 5.,
                               double theta_n_max = 35.) {
+    bool LimitedLocalGeneration = false;
+
     // -------------------------------------------------------------------------------------------------
-    cout << "\033[33m" <<"\n\n\n===========================================================================\n\033[0m";
-    cout << "\033[33m" <<setw(50) << "Uniform sample generator\n\033[0m";
-    cout << "\033[33m" <<"===========================================================================\n\n\033[0m";
+    cout << "\033[33m" << "\n\n\n===========================================================================\n\033[0m";
+    cout << "\033[33m" << setw(50) << "Uniform sample generator\n\033[0m";
+    cout << "\033[33m" << "===========================================================================\n\n\033[0m";
 
     if (gen_1e_events && gen_ep_events && gen_en_events) {
-        cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_1e_events or gen_ep_events or gen_en_events!... Exiting" << endl, exit(0);
+        cout << "\033[33m" << "Uniform_sample_generator:\033[0m change gen_1e_events or gen_ep_events or gen_en_events!... Exiting" << endl, exit(0);
     }
 
-    if (gen_1e_events && gen_ep_events) { cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_1e_events or gen_ep_events!... Exiting" << endl, exit(0); }
+    if (gen_1e_events && gen_ep_events) { cout << "\033[33m" << "Uniform_sample_generator:\033[0m change gen_1e_events or gen_ep_events!... Exiting" << endl, exit(0); }
 
-    if (gen_1e_events && gen_en_events) { cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_1e_events or gen_en_events!... Exiting" << endl, exit(0); }
+    if (gen_1e_events && gen_en_events) { cout << "\033[33m" << "Uniform_sample_generator:\033[0m change gen_1e_events or gen_en_events!... Exiting" << endl, exit(0); }
 
-    if (gen_en_events && gen_ep_events) { cout << "\033[33m" <<"Uniform_sample_generator:\033[0m change gen_en_events or gen_ep_events!... Exiting" << endl, exit(0); }
+    if (gen_en_events && gen_ep_events) { cout << "\033[33m" << "Uniform_sample_generator:\033[0m change gen_en_events or gen_ep_events!... Exiting" << endl, exit(0); }
 
     TString OutputFileNamePrefix = ConfigPrefix(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
     OutPutFolder = ConfigTopDir(gen_1e_events, gen_ep_events, gen_en_events, Ebeam, OutPutFolder);  // reconfigure OutPutFolder according to working directory (ifarm or local)
 
     string CurrentDir = GetCurrentDirectory();
-    if (findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator")) { nFiles = 10; }
+    if (LimitedLocalGeneration && findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator")) { nFiles = 10; }
 
     bool GenerateLundFiles = true;
     int DisplaySpace = 74;
@@ -72,6 +76,12 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
 
     string OutPutFolder0(OutPutFolder.Data());
     DisplyText("OutPutFolder", DisplaySpace, OutPutFolder);
+
+    if (findSubstring(OutPutFolder0, "volatile") && findSubstring(CurrentDir, "Users/alon/Projects/Uniform-sample-generator")) {
+        std::cerr << "\033[31m" << "Error!" << "\033[0m"
+                  << "Output directory:\n\t" << OutPutFolder0 << "\nCurrent directory:\n\t" << CurrentDir << "\nDo not match the same running system! Aborting..." << endl;
+        exit(0);
+    }
 
     TString lundPath = OutPutFolder + "lundfiles", mchipoPath = OutPutFolder + "mchipo";
     TString reconhipoPath = OutPutFolder + "reconhipo", rootfilesPath = OutPutFolder + "rootfiles";
@@ -110,7 +120,7 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     double weight = 1;
     DisplyText("weight", DisplaySpace, weight);
 
-    cout << "\033[33m" <<"\nCreating plot directories...\n\033[0m";
+    cout << "\033[33m" << "\nCreating plot directories...\n\033[0m";
 
     system(("rm -r " + OutPutFolder0).c_str());     // Delete old output folder
     system(("mkdir -p " + OutPutFolder0).c_str());  // Make new output folder
@@ -123,8 +133,8 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     system(("mkdir -p " + MonitoringPlotsPath0).c_str());  // Make new monitoring plots folder
 
     /* Add particles in event below */
-    string target = "Ar";
-    // string target = "1-foil-small";
+    // string target = "Ar";
+    string target = "1-foil-small";
     // string target = "1-foil";
     TVector3 vtx;
     // TVector3 vtx = randomVertex(target);
@@ -132,40 +142,43 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
     if (GenerateLundFiles) {
         InitHistograms(gen_1e_events, gen_ep_events, gen_en_events, Ebeam);
 
-        cout << "\033[33m" <<"\nGenerating lund files...\n\n\033[0m";
+        cout << "\033[33m" << "\nGenerating lund files...\n\n\033[0m";
 
         for (int iFiles = 1; iFiles < nFiles + 1; iFiles++) {
             TString OutFileName = Form("%s/%s_%d.txt", lundPath.Data(), OutputFileNamePrefix.Data(), iFiles);
-            cout << "\033[33m" <<"OutFileName:\033[0m " << std::setw(49) << OutFileName << "\n";
+            cout << "\033[33m" << "OutFileName:\033[0m " << std::setw(49) << OutFileName << "\n";
 
             ofstream OutFile;
             OutFile.open(OutFileName);
-            if (!OutFile.is_open()) { cout << "\033[33m" <<"Output file cannot be created\033[0m" << endl; }
+            if (!OutFile.is_open()) { cout << "\033[33m" << "Output file cannot be created\033[0m" << endl; }
 
             TString formatstring, outstring;
 
             if (gen_1e_events) {
-                Generate_uniform_event(target, TH1_hist_list_1e, TH2_hist_list_1e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
-                // Generate_uniform_event(vtx, TH1_hist_list_1e, TH2_hist_list_1e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
-                                       beamE_in_lundfiles, Ebeam, weight, mass_e, theta_e_min, theta_e_max);
+                Generate_uniform_event(
+                    target, TH1_hist_list_1e, TH2_hist_list_1e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
+                    // Generate_uniform_event(vtx, TH1_hist_list_1e, TH2_hist_list_1e, OutFile, formatstring, outstring, ran, nEvents, targP, beamP, interactN, beamType,
+                    beamE_in_lundfiles, Ebeam, weight, mass_e, theta_e_min, theta_e_max);
             }
 
             if (gen_ep_events) {
-                Generate_uniform_event(OutPutFolder, target, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP,
-                // Generate_uniform_event(OutPutFolder, vtx, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP,
-                                       interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min, theta_p_max);
+                Generate_uniform_event(
+                    OutPutFolder, target, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP,
+                    // Generate_uniform_event(OutPutFolder, vtx, TH1_hist_list_ep, TH2_hist_list_ep, OutFile, formatstring, outstring, ran, 2212, nEvents, nParticles, targP, beamP,
+                    interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_p, theta_e_min, theta_e_max, theta_p_min, theta_p_max);
             }
 
             if (gen_en_events) {
-                Generate_uniform_event(OutPutFolder, target, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP,
-                // Generate_uniform_event(OutPutFolder, vtx, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP,
-                                       interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min, theta_n_max);
+                Generate_uniform_event(
+                    OutPutFolder, target, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP,
+                    // Generate_uniform_event(OutPutFolder, vtx, TH1_hist_list_en, TH2_hist_list_en, OutFile, formatstring, outstring, ran, 2112, nEvents, nParticles, targP, beamP,
+                    interactN, beamType, beamE_in_lundfiles, Ebeam, weight, mass_e, mass_n, theta_e_min, theta_e_max, theta_n_min, theta_n_max);
             }
 
             OutFile.close();
         }
 
-        cout << "\033[33m" <<"\nPlotting and saving monitoring plots\n\n\033[0m";
+        cout << "\033[33m" << "\nPlotting and saving monitoring plots\n\n\033[0m";
 
         TCanvas* c1 = new TCanvas("canvas", "canvas", 1000, 750);  // normal res
         c1->SetGrid(), c1->SetBottomMargin(0.14), c1->SetLeftMargin(0.16), c1->SetRightMargin(0.12), c1->cd();
@@ -334,6 +347,6 @@ void Uniform_sample_generator(const bool gen_1e_events, const bool gen_ep_events
         plots_fout->Write();
         plots_fout->Close();
     } else {
-        cout << "\033[33m" <<"\nLund files generation disabled.\n\033[0m";
+        cout << "\033[33m" << "\nLund files generation disabled.\n\033[0m";
     }
 }
